@@ -78,7 +78,7 @@ export default class FileHandler {
 - Variablen, Funktionen, Methoden und Properties in camelCase
 - Abkürzungen komplett groß: `API`, `CDN`, `HTTP`, `JWT`, `UUID`, `GPS`, `ISO` (`APIV2Client`, `JWTAuthHandler`, `generateUUIDRouteParameter`)
 - Namen werden vom Allgemeinen zum Speziellen gebildet: `APIExceptionAccessDenied`, `APIBookingSmallModelInterface`, `RepositoryDeviceCreateInterface`
-- in SDKs bekommt jede Datei ein Paket-Präfix (`API…`, `CDN…`, `TelematicService…`), weil alles flach über einen gemeinsamen Index exportiert wird
+- in SDKs bekommt jede Datei ein Paket-Präfix (`API…`), weil alles flach über einen gemeinsamen Index exportiert wird
 - Options-Objekte: `<Klasse>ConstructorOptionInterface` bzw. `<Klasse>OptionInterface`
 - Generics: `T` oder sprechend mit `T`-Präfix (`TModel`, `TSortFieldNames`)
 - Methoden für Datenzugriff: `create`, `get`, `find`, `update`, `delete`, `createOrUpdate`, `getByXAndY`; Listen im Plural (`getDevices`)
@@ -150,7 +150,7 @@ export default class DateFormatter {
 ### Basis-Konfiguration
 - `package.json`: `"type": "module"`, `engines` auf die aktuelle Node- und npm-Version (derzeit `node >=26.12.1`, `npm >=11.20.0`)
 - Pakete liegen in GitHub Packages unter `@dasred/*` (`publishConfig.registry`, `access: restricted`)
-- `tsconfig.json`: `target` ES2024, `module` ESNext, `moduleResolution` Bundler, `strict`, `outDir` dist, `skipLibCheck`, `lib` dom/dom.iterable/esnext; `include` nur `src/**/*.ts`, `test`, `dist`, `coverage` und `vitest.config.ts` ausgeschlossen; path alias mit @/* auf `./src/*
+- `tsconfig.json`: `target` ES2024, `module` ESNext, `moduleResolution` Bundler, `strict`, `outDir` dist, `skipLibCheck`, `lib` dom/dom.iterable/esnext; `include` nur `src/**/*.ts`, `test`, `dist`, `coverage` und `vitest.config.ts` ausgeschlossen; path alias mit @/* auf `./src/*`
 - SDK: `exports` mit `types`/`import`/`require`, `files: ["dist/*"]`
 - Tests mit `vitest`, Testdateien unter `./test/` mit derselben Struktur wie `src/`, `environment` `node` (Browser-SDKs `jsdom`), `watch: false`, Coverage über `@vitest/coverage-v8`
 
@@ -208,7 +208,6 @@ db/
 - API URLs sind versioniert (`/api/v1/…`), UUID-Parameter mit Regex-Constraint (`generateUUIDRouteParameter`)
 
 ### Datenbank
-- `postgres`
 - SQL-Keywords groß, Tabellen und Spalten in snake_case, Rückgabespalten mit `AS "camelCase"` aliasen
 - Migrationen mit dbmate unter `db/migrations/<timestamp>_<name>.sql` mit `-- migrate:up` / `-- migrate:down`
 - Tabellen im Singular in snake_case, `id uuid DEFAULT gen_random_uuid()`, `created_at` / `updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL`
@@ -216,7 +215,7 @@ db/
 
 ## SDKs (API-Clients)
 - eine Client-Klasse `<Präfix>APIClient`; der Konstruktor bekommt `url` (Trailing Slash wird entfernt), Token und ggf. `clientId`
-- HTTP über natives `fetch` in einer `protected async fetch<T>(method, url, body?)`-Methode mit `cache: 'no-cache'` und `authorization: Bearer …`; `content-type: application/json` nur mit Body (axios ist Legacy, `APIV1Client` ist deprecated)
+- HTTP über natives `fetch` in einer `protected async fetch<T>(method, url, body?)`-Methode mit `cache: 'no-cache'` und `authorization: Bearer …`; `content-type: application/json` nur mit Body
 - HTTP-Methoden als Enum (`<Präfix>HTTPMethod`)
 - die Antwort-Hülle `{data}` wird im Client entpackt (`…ModelAPIStructureInterface<T>`)
 - eine öffentliche Methode pro Endpoint (`createDevice`, `getDevices`, `deleteDevice`, …); Pfadparameter mit `encodeURIComponent`, Query-Strings über `qs`
