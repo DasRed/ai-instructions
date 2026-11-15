@@ -65,7 +65,8 @@ export default class FileHandler {
 - `@ts-expect-error` nur mit kurzer Begründung; `@ts-ignore` und `@ts-nocheck` sind verboten
 
 ### Imports
-- Imports ohne Dateiendung (`./service/FileHandler`), Index-Dateien explizit (`./route/index`)
+- Imports aus `src/` immer über den Alias `@/` (`@/service/FileHandler`), keine relativen Pfade wie `../../`
+- Imports ohne Dateiendung, Index-Dateien explizit (`@/route/index`)
 - alle Imports alphabetisch nach Modulpfad sortiert (Groß-/Kleinschreibung ignorieren), externe Pakete, `node:`-Module und lokale Pfade nicht gruppieren
 - keine Leerzeilen zwischen den Imports, genau eine Leerzeile nach dem letzten Import
 - Node-Built-ins immer mit `node:`-Präfix (`node:path`, `node:stream`)
@@ -91,7 +92,7 @@ export default class FileHandler {
 - ab mehr als drei Parametern ein Options-Objekt mit Interface und Destructuring inklusive Default-Werten in der Signatur
 - Setter- und Konfigurationsmethoden geben `this` zurück (Rückgabetyp `this`)
 - gemeinsames Verhalten über `abstract` Basisklassen mit `protected abstract` Hook-Methoden (z. B. `AuthHandler.validate`, `Provider.handleData`)
-- zustandslose Helfer als Klasse mit `static`-Methoden (`DateConverter`, `ResponseGenerator`)
+- zustandslose Helfer als Klasse mit `static`-Methoden (z. B. `DateConverter`)
 
 ```typescript
 interface DateFormatterConstructorOptionsInterface {
@@ -129,7 +130,7 @@ export default class DateFormatter {
 - Operationen, die einen Boolean liefern und fehlschlagen dürfen (`delete`, `restore`), fangen den Fehler ab und geben `false` zurück
 
 ### Fehlerbehandlung
-- jedes Paket hat eine eigene Exception-Basisklasse (`<Präfix>Exception extends Error` bzw. `Exception`), spezielle Exceptions erben davon
+- jedes Paket hat eine eigene Exception-Basisklasse (`<Präfix>Exception extends Error`), spezielle Exceptions erben davon
 - Exceptions tragen ihren Kontext als `public readonly` Properties (`response`, `error`, `data`)
 - Fehlercodes der API werden über `public static readonly identifier` einer Exception-Klasse zugeordnet und über eine Factory erzeugt
 - eigene Exceptions werden unverändert weitergeworfen; fremde `Error` werden in `…ExceptionUnknownError` gewrappt, alles andere in `…ExceptionUnknown`
@@ -150,8 +151,8 @@ export default class DateFormatter {
 ### Basis-Konfiguration
 - `package.json`: `"type": "module"`, `engines` auf die aktuelle Node- und npm-Version (derzeit `node >=26.12.1`, `npm >=11.20.0`)
 - Pakete liegen in GitHub Packages unter `@dasred/*` (`publishConfig.registry`, `access: restricted`)
-- `tsconfig.json`: `target` ES2024, `module` ESNext, `moduleResolution` Bundler, `strict`, `outDir` dist, `skipLibCheck`, `lib` dom/dom.iterable/esnext; `include` nur `src/**/*.ts`, `test`, `dist`, `coverage` und `vitest.config.ts` ausgeschlossen; path alias mit @/* auf `./src/*`
-- SDK: `exports` mit `types`/`import`/`require`, `files: ["dist/*"]`
+- `tsconfig.json`: `target` ES2024, `module` ESNext, `moduleResolution` Bundler, `strict`, `outDir` dist, `skipLibCheck`, `lib` dom/dom.iterable/esnext; `include` nur `src/**/*.ts`, `test`, `dist`, `coverage` und `vitest.config.ts` ausgeschlossen; Path-Alias `@/*` → `./src/*`
+- SDK: `exports` mit `import`/`require`, `files: ["dist/*"]`
 - Tests mit `vitest`, Testdateien unter `./test/` mit derselben Struktur wie `src/`, `environment` `node` (Browser-SDKs `jsdom`), `watch: false`, Coverage über `@vitest/coverage-v8`
 
 ### Scripts
@@ -171,7 +172,7 @@ Die Script-Namen sind in allen Projekten gleich:
 
 ### Abhängigkeiten
 - so wenige wie möglich, Plattform-APIs vor zusätzlichen Paketen
-- Services: `fastify` (+ `@fastify/cors`, `@fastify/multipart`), `postgres`, `dbmate`, `dotenv`, `jsonwebtoken`, `luxon`
+- Services: `fastify` (+ `@fastify/cors`, `@fastify/multipart`), `postgres` (postgres.js), `dbmate`, `dotenv`, `jsonwebtoken`, `luxon`
 - SDKs: nur zwingend benötigte Runtime-Abhängigkeiten (z. B. `qs`, `luxon`, `jwt-decode`); Framework-Typen als `peerDependencies`
 - Versionen mit `^`, `package-lock.json` wird committet
 
@@ -189,9 +190,9 @@ src/
     config.ts     typed configuration from env
     env.ts        env<T>(name, defaultValue) helper
     enum/
-    lib/          singleton instances (app, sql, jwtAuthHandler, repository/repositoryDevice, ...)
+    lib/          singleton instances (app, sql, repository/repositoryDevice, ...)
     route/        one route per file, index.ts per folder
-    service/      classes (handlers, repositories, providers, ResponseGenerator)
+    service/      classes (handlers, repositories, providers, ...)
 db/
     migrations/   dbmate migrations
 ```
@@ -201,11 +202,11 @@ db/
 ### Konfiguration
 - `config.ts` exportiert ein über `ConfigInterface` typisiertes Objekt, gruppiert nach Bereichen (`server`, `auth`, `cors`, `database`, …)
 - Werte ausschließlich über `env<T>('PREFIX_NAME', defaultValue)`; ohne Default ist die Variable Pflicht und der Prozess beendet sich mit einer Fehlermeldung
-- Umgebungsvariablen in UPPER_SNAKE_CASE mit Service-Präfix (`CDN_`, `TELEMATIC_`)
+- Umgebungsvariablen in UPPER_SNAKE_CASE mit Service-Präfix (`<SERVICE>_…`, z. B. `<SERVICE>_SERVER_PORT`)
 - jede Variable wird in `.env.example` dokumentiert: Beschreibung, `optional, default=…` bzw. `required`, auskommentierter Beispielwert; `.env` ist in `.gitignore`
 
 ### Routen
-- API URLs sind versioniert (`/api/v1/…`), UUID-Parameter mit Regex-Constraint (`generateUUIDRouteParameter`)
+- API URLs sind versioniert (`/api/v1/…`), UUID-Parameter mit Regex-Constraint
 
 ### Datenbank
 - SQL-Keywords groß, Tabellen und Spalten in snake_case, Rückgabespalten mit `AS "camelCase"` aliasen
