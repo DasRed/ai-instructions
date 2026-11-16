@@ -224,5 +224,61 @@ db/
 - Modelle als Interfaces unter `Model/` bzw. `model/<bereich>/`, Exceptions unter `Exception/` bzw. `exception/`, Enums unter `enum/`; innerhalb eines Repositories einheitlich bleiben
 - Modell-Varianten werden im Namen unterschieden: `Small`, `Find`, `Create`, `Update` (`APIBookingSmallModelInterface`)
 
+## Übersetzungen (i18n)
+
+### Struktur
+```
+src/
+    translation/
+        index.ts          export default {de};
+        de/
+            index.ts      collects all namespaces of the language
+            base.ts       shared texts (actions, fields, pagination, ...)
+            error.ts      error messages, e.g. API error codes
+            apiToken.ts   one namespace per feature
+            setting.ts
+```
+
+### Definition
+- je Sprache ein Ordner (`translation/de/`), darin je fachlichem Bereich eine Datei; Dateiname = Namespace = Key im Sprach-Index, in camelCase
+- jede Datei exportiert ihr Objekt-Literal direkt als Default-Export mit `as const`; die Regel „Exportname = Dateiname“ gilt hier nicht
+- der Sprach-Index importiert alle Namespaces alphabetisch und exportiert sie als Objekt mit `as const`; `translation/index.ts` exportiert die Sprachen mit dem Sprachcode als Key (`{de}`)
+- Englisch ist die Referenzsprache: der Typ aller gültigen Keys wird aus `en` abgeleitet, weitere Sprachen haben exakt dieselbe Struktur
+- Keys sind englisch und sind der Text 
+- die Dateien sind eindimensional: ein flaches Objekt ohne Verschachtelung, zusammengehörige Keys werden nur durch Leerzeilen gruppiert
+- Enum-Werte werden über berechnete Keys abgebildet: `[APITokenStatusEnum.ACTIVE]: 'Aktiv'`
+- Keys enthalten keinen `.` (next-intl nutzt den Punkt für Verschachtelung und wirft sonst `INVALID_KEY`), Sätze als Key daher ohne Schlusspunkt
+- Platzhalter in ICU-Syntax mit `{name}`, Variablennamen in camelCase (`{fileName}`, `{count}`); Plural über `{count, plural, one {…} other {# …}}`
+- Zeilenumbrüche mit `\n`, Absätze mit `\n\n`
+
+```typescript
+// translation/de/apiToken.ts
+import APITokenStatusEnum from '@/enum/APITokenStatusEnum';
+
+export default {
+    'API Tokens': 'API Tokens',
+    'Name':       'Name',
+    'never':      'nie',
+
+    'Delete':                                 'Löschen',
+    'Delete API token':                       'API Token löschen',
+    'The API token was deleted successfully': 'Der API Token wurde erfolgreich gelöscht.',
+    'The API token could not be deleted':     'Der API Token konnte nicht gelöscht werden.',
+
+    'Create API token':     'API Token erstellen',
+    '{days} days ({date})': '{days} Tage ({date})',
+
+    [APITokenStatusEnum.ACTIVE]:  'Aktiv',
+    [APITokenStatusEnum.EXPIRED]: 'Abgelaufen',
+} as const;
+```
+
+### Verwendung (Next.js)
+- übersetzt wird mit `next-intl`: in Komponenten `const t = useTranslations('apiToken');`, in async Server-Code `const t = await getTranslations('apiToken');`
+- der Namespace ist der Name der Übersetzungsdatei, der Key der englische Text: `t('Delete API token')`, `t('{days} days ({date})', {days, date})`
+- die Messages einer Sprache werden in `getRequestConfig` aus `translation/<locale>/index.ts` geladen
+- die Keys werden über `AppConfig` mit den Messages der Referenzsprache (`en`) typisiert, unbekannte Keys sind ein Compile-Fehler
+- dynamische Keys (z. B. Fehlercodes einer API) vorher mit `t.has(key)` prüfen und sonst einen allgemeinen Text verwenden
+
 ## README
 - auf Englisch, Aufbau: Titel, Requirements, Installation bzw. Local development, Nutzung (Quick Start bzw. Routes mit Beispielen), Environment variables, Docker
