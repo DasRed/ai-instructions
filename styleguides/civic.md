@@ -1,16 +1,16 @@
-# Übertragbarer Web-Styleguide nach dem Moosburg-Konzept
+# Styleguide „Civic“ – Warme Cremeflächen, Serifenschlagzeilen und ein kräftiger Akzent
 
-> **Zweck:** Gestaltungsreferenz für neue Websites und Webanwendungen. Dieser Guide beschreibt die **visuelle Sprache, Informationsarchitektur und Interaktionsmuster** des privaten [Website-Konzepts Moosburg an der Isar](https://bagruber.github.io/moosburg/) und seiner Seite [„Konzept & Design“](https://bagruber.github.io/moosburg/konzept#design). Er ist keine amtliche Vorgabe der Stadt. Stand der Sichtprüfung: 31. Oktober 2026.
+> **Zweck:** Gestaltungsreferenz für neue Websites und Webanwendungen. Dieser Guide beschreibt die **visuelle Sprache, Informationsarchitektur und Interaktionsmuster** eines serviceorientierten Website-Konzepts (im Folgenden „Vorbild“). Stand der Sichtprüfung: 31. Oktober 2026.
 
 ## Kurzfassung für neue Projekte
 
-Gestalte eine ruhige, hochwertige und gut zugängliche Website: warme Cremeflächen, dunkle Serifenschlagzeilen, sehr lesbare serifenlose UI-Texte, ein klarer kräftiger Aktionsfarbton, großzügige Abstände, lokale bzw. thematisch passende Fotografie und schnell erfassbare Service-Karten. Setze ausdrucksstarke Markenmomente gezielt in Hero, Themenaufmachern und Footer ein; halte Suche, Formulare, Übersichten und andere Arbeitsflächen sachlich und übersichtlich. Übernimm **Struktur und Gestaltungsprinzipien**, aber ersetze Moosburger Wappen, Rose, Ortsbilder, Ortsnamen, Inhalte und gegebenenfalls die Farbsemantik durch die Identität des neuen Projekts.
+Gestalte eine ruhige, hochwertige und gut zugängliche Website: warme Cremeflächen, dunkle Serifenschlagzeilen, sehr lesbare serifenlose UI-Texte, ein klarer kräftiger Aktionsfarbton, großzügige Abstände, lokale bzw. thematisch passende Fotografie und schnell erfassbare Service-Karten. Setze ausdrucksstarke Markenmomente gezielt in Hero, Themenaufmachern und Footer ein; halte Suche, Formulare, Übersichten und andere Arbeitsflächen sachlich und übersichtlich. Übernimm **Struktur und Gestaltungsprinzipien**, aber ersetze Wappen, Rose, Ortsbilder, Ortsnamen und Inhalte des Vorbilds und gegebenenfalls die Farbsemantik durch die Identität des neuen Projekts.
 
 ## 1. Leitidee und Informationsarchitektur
 
 - **Eine Marke, zwei Gestaltungsdichten:** Identitätsflächen dürfen mit großer Serifentypografie, einem handschriftlichen Akzent und einer mehrfarbigen Markengeste auffallen. Serviceflächen bleiben auf hellen, warmen Hintergründen ruhig; kräftige Farben markieren dort vor allem Aktionen und Zustände.
 - **Aufgaben zuerst:** Nutzer sollen häufige Anliegen schnell erreichen. Prominente Suche, direkte Einstiegskarten, kurze Beschriftungen und eine leicht auffindbare Rückfallebene wie A–Z oder Themenindex gehören zum Muster.
-- **Zwei Zugänge zum Inhalt:** Wenige klare Hauptbereiche plus querschnittliche Wege nach Anlass, Lebenslage oder Aufgabe. Die vier Moosburger Rubriken und zwölf Lebenslagen sind Beispiele, keine festen Vorgaben für andere Projekte.
+- **Zwei Zugänge zum Inhalt:** Wenige klare Hauptbereiche plus querschnittliche Wege nach Anlass, Lebenslage oder Aufgabe. Die vier Rubriken und zwölf Lebenslagen des Vorbilds sind Beispiele, keine festen Vorgaben für andere Projekte.
 - **Vom Überblick zur Handlung:** Eyebrow → prägnante Überschrift → kurze Einordnung → Karten/Listen/Flow → sichtbarer nächster Schritt. Detailseiten bieten Brotkrumen, einen klaren Einstieg und verwandte Inhalte oder Kontaktmöglichkeiten im Kontext.
 - **Redaktionelle Freiheit auf gemeinsamer Basis:** Themenseiten dürfen individuell komponiert sein, nutzen aber dieselben Farb-, Typografie-, Fokus- und Kontrastregeln.
 
@@ -18,33 +18,33 @@ Gestalte eine ruhige, hochwertige und gut zugängliche Website: warme Cremefläc
 
 Die folgenden Hexwerte wurden aus den CSS-Farbvariablen der gerenderten Website abgelesen. Token-Namen beziehen sich auf das Vorbild; in einem anderen Projekt können sie semantisch umbenannt werden.
 
-| Token | Wert | Verwendung |
-| --- | --- | --- |
-| `cream` | `#FAF7F2` | Primärer Seiten- und Servicehintergrund |
-| `cream-dark` | `#F1ECE1` | Abgesetzte Flächen, Karten, Abschnittswechsel |
-| `gold-100` | `#F6ECD5` | Sehr helle Hervorhebung, Hinweisband |
-| `ink` | `#1C1C1C` | Haupttext, dunkle Identitätsfläche |
-| `ink-soft` | `#555555` | Sekundärer Fließtext |
-| `ink-muted` | `#6F6B63` | Metadaten und zurückhaltende Labels; Kontrast prüfen |
-| `ink-line` | `#E4E0D7` | Feine Trennlinien und Kartenränder |
-| `red-500` | `#C8102E` | Primäre Aktion, Markenakzent |
-| `red-600` | `#B00E28` | Kräftige Aktionsfläche |
-| `red-700` | `#A50D24` | Links, Eyebrows und Akzente auf hellen Flächen |
-| `red-900` | `#6D0818` | Tiefe Markenfläche, Hero, Footer |
-| `gold-200` | `#E8D5A3` | Heller Akzent auf dunklen Flächen |
-| `gold-500` | `#B8964E` | Dekor und Illustration, **nicht** für normalen Text auf hellem Grund |
-| `gold-700` | `#6E5A30` | Dunklere Goldakzente, Text auf hellen Karten |
+| Token        | Wert      | Verwendung                                                           |
+|--------------|-----------|----------------------------------------------------------------------|
+| `cream`      | `#FAF7F2` | Primärer Seiten- und Servicehintergrund                              |
+| `cream-dark` | `#F1ECE1` | Abgesetzte Flächen, Karten, Abschnittswechsel                        |
+| `gold-100`   | `#F6ECD5` | Sehr helle Hervorhebung, Hinweisband                                 |
+| `ink`        | `#1C1C1C` | Haupttext, dunkle Identitätsfläche                                   |
+| `ink-soft`   | `#555555` | Sekundärer Fließtext                                                 |
+| `ink-muted`  | `#6F6B63` | Metadaten und zurückhaltende Labels; Kontrast prüfen                 |
+| `ink-line`   | `#E4E0D7` | Feine Trennlinien und Kartenränder                                   |
+| `red-500`    | `#C8102E` | Primäre Aktion, Markenakzent                                         |
+| `red-600`    | `#B00E28` | Kräftige Aktionsfläche                                               |
+| `red-700`    | `#A50D24` | Links, Eyebrows und Akzente auf hellen Flächen                       |
+| `red-900`    | `#6D0818` | Tiefe Markenfläche, Hero, Footer                                     |
+| `gold-200`   | `#E8D5A3` | Heller Akzent auf dunklen Flächen                                    |
+| `gold-500`   | `#B8964E` | Dekor und Illustration, **nicht** für normalen Text auf hellem Grund |
+| `gold-700`   | `#6E5A30` | Dunklere Goldakzente, Text auf hellen Karten                         |
 
 **Erprobte Kombinationen aus der Konzeptseite:**
 
-| Fläche | Text und Eyebrow | Aktion |
-| --- | --- | --- |
-| Service: `cream` | Titel `ink`, Akzent `red-700` | Roter Primärbutton |
-| Karte: `cream-dark` | Titel `ink`, Eyebrow `gold-700` | Roter Primärbutton |
-| Identität: `ink` | Titel `cream`, Eyebrow `gold-200` | Heller invertierter Button |
-| Aktion: `red-600` | Text `cream`, Eyebrow `gold-200` | Heller invertierter Button |
-| Goldfläche: `gold-700` | Text `cream` | Heller invertierter Button |
-| Tiefe Fläche: `red-900` | Heller Text | Heller invertierter Button |
+| Fläche                  | Text und Eyebrow                  | Aktion                     |
+|-------------------------|-----------------------------------|----------------------------|
+| Service: `cream`        | Titel `ink`, Akzent `red-700`     | Roter Primärbutton         |
+| Karte: `cream-dark`     | Titel `ink`, Eyebrow `gold-700`   | Roter Primärbutton         |
+| Identität: `ink`        | Titel `cream`, Eyebrow `gold-200` | Heller invertierter Button |
+| Aktion: `red-600`       | Text `cream`, Eyebrow `gold-200`  | Heller invertierter Button |
+| Goldfläche: `gold-700`  | Text `cream`                      | Heller invertierter Button |
+| Tiefe Fläche: `red-900` | Heller Text                       | Heller invertierter Button |
 
 Die Konzeptseite nennt für Text auf `gold-500` nur **2,6:1** Kontrast und schließt diese Paarung aus. Prüfe Text, Bedienelemente, Fokus und Statusfarben im konkreten Projekt gegen die geltenden WCAG-Anforderungen; eine ähnliche Optik allein belegt keine Barrierefreiheit.
 
@@ -72,7 +72,7 @@ Das Vorbild verwendet **neun feste Farbsegmente statt eines Verlaufs**, beispiel
 - **Raster:** Auf breiten Screens mehrere gleichartige Karten nebeneinander; mobil in eine sinnvolle, lesbare Reihenfolge umstellen. Karten besitzen leichte Ränder, wenig oder keine dekorative Rundung und klar voneinander getrennte Inhalte.
 - **Hero:** Große Serifenschlagzeile und ein sehr kurzer Nutzen-/Handlungstext; auf der Startseite daneben ein großformatiges lokales Foto und eine dominante Suche. Auf Unterseiten Brotkrumen, Eyebrow, H1 und kompakter Beschreibung; ein dezentes lokales Motiv kann die Fläche begleiten.
 - **Fotografie:** Echte, zum Thema passende Menschen, Orte und Situationen statt austauschbarer Stockbilder. Das Vorbild nutzt breite Bildausschnitte, `object-cover`, sichtbare Bildnachweise und teilweise Illustration/Wasserzeichen. Bildrechte und Herkunft für jedes neue Projekt eigenständig klären.
-- **Dekor:** Die Moosburger Rose ist ein lokales Markenzeichen und erscheint dort als Bullet, Loader oder Wasserzeichen. In anderen Projekten durch ein eigenes, geeignetes Motiv ersetzen oder weglassen.
+- **Dekor:** Die Rose des Vorbilds ist ein lokales Markenzeichen und erscheint dort als Bullet, Loader oder Wasserzeichen. In anderen Projekten durch ein eigenes, geeignetes Motiv ersetzen oder weglassen.
 
 ## 5. Komponenten und Interaktion
 
@@ -109,15 +109,15 @@ Das Vorbild verwendet **neun feste Farbsegmente statt eines Verlaufs**, beispiel
 Vor der Umsetzung diese Entscheidungen treffen:
 
 1. **Kontext:** Zielgruppe, wichtigste drei bis sechs Aufgaben, Tonalität, rechtliche und fachliche Anforderungen.
-2. **Marke:** Name, Logo/Motiv, Bildwelt und Akzentfarbe. Die warmen neutralen Flächen und der Kontrastgedanke können bleiben; Moosburg-spezifische Identität wird ersetzt.
-3. **Informationsstruktur:** Passende Hauptbereiche und querschnittliche Einstiege nach Aufgabe oder Anlass definieren. Keine Moosburger Rubrik nur aus optischen Gründen übernehmen.
+2. **Marke:** Name, Logo/Motiv, Bildwelt und Akzentfarbe. Die warmen neutralen Flächen und der Kontrastgedanke können bleiben; die Identität des Vorbilds wird ersetzt.
+3. **Informationsstruktur:** Passende Hauptbereiche und querschnittliche Einstiege nach Aufgabe oder Anlass definieren. Keine Rubrik des Vorbilds nur aus optischen Gründen übernehmen.
 4. **Gestaltungsdichte:** Festlegen, welche Seiten Identitätsflächen sein dürfen und welche als ruhige Arbeitsflächen funktionieren müssen.
 5. **Komponenten:** Suche, Buttons, Service-Tiles, redaktionelle Karten, Hinweise, Formulare und Detailseiten mit denselben Tokens gestalten.
 6. **Qualität:** Desktop und Mobilgerät, Tastatur, Fokus, Kontrast, Textlängen, echte Inhalte sowie Lade- und Fehlerzustände prüfen.
 
 ### Kompakter Prompt zum Wiederverwenden
 
-> Verwende `/Users/mstarker/Web/ai/moosburg-styleguide.md` als Gestaltungsreferenz. Das Projekt ist **[Produkt/Website]** für **[Zielgruppe]** mit den Hauptaufgaben **[Aufgaben]**. Übertrage die Prinzipien für Typografie, warme Flächen, klare Service-Karten, Suche und gezielte Markenmomente. Passe **[Farben/Logo/Bildwelt/Ton]** an die Marke **[Name]** an. Die wichtigsten Seiten/Funktionen sind **[Seiten/Funktionen]**. Setze responsive und barrierearm um.
+> Verwende `/Users/mstarker/Web/ai/styleguides/civic.md` als Gestaltungsreferenz. Das Projekt ist **[Produkt/Website]** für **[Zielgruppe]** mit den Hauptaufgaben **[Aufgaben]**. Übertrage die Prinzipien für Typografie, warme Flächen, klare Service-Karten, Suche und gezielte Markenmomente. Passe **[Farben/Logo/Bildwelt/Ton]** an die Marke **[Name]** an. Die wichtigsten Seiten/Funktionen sind **[Seiten/Funktionen]**. Setze responsive und barrierearm um.
 
 ### Prüfliste für das Ergebnis
 
@@ -127,8 +127,6 @@ Vor der Umsetzung diese Entscheidungen treffen:
 - Funktionieren Navigation, Karten, Suche und Formulare mit Tastatur und auf schmalen Bildschirmen?
 - Sind Motive, Texte, Daten und Funktionen tatsächlich passend zum neuen Projekt?
 
-## Quellen und Abgrenzung
+## Abgrenzung
 
-- [Moosburg-Startseite](https://bagruber.github.io/moosburg/) – visuelle und strukturelle Referenz.
-- [Konzept & Design](https://bagruber.github.io/moosburg/konzept#design) – erklärte Designprinzipien, Kombinationen, Ikonografie und Produktideen.
 - Die Hexwerte, Font-Familien und einige Größen/Abstände wurden an der am 31. Oktober 2026 gerenderten Website abgelesen. Diese Datei ist eine **abgeleitete Arbeitsreferenz** für andere Projekte und keine Kopie aller Implementierungsdetails oder eine Lizenz für Bilder, Logo und Texte.
