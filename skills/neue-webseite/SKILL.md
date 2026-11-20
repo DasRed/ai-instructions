@@ -21,6 +21,7 @@ Bevor du fragst, schau nach, was schon bekannt ist, damit du nichts doppelt abfr
 - **Memory:** passende Projekt-/Kundendateien (z. B. Selbstständigkeit Webseiten, Glonntaler Cup, Copa, Annuva, aspect42).
 - **Code-Guidelines:** `~/Web/ai/CodeGuidlines.md` und `~/Web/ai/intellij-code-styles.xml`.
 - **Styleguides:** alle Dateien in `~/Web/ai/styleguides/` auflisten und von jedem Titel, Zweck und Kurzfassung lesen, damit du in der Design-Runde passende Styleguides vorschlagen kannst. Standard ist `civic.md` (dort zusätzlich Abschnitt 7 kennen).
+- **Webseiten-Bausteine:** `~/Web/ai/website-marco-starker.de/README.md` lesen (Doku-Vertrag, Projektdaten, Doku-Einbindung, öffentliche Repos). Welche Datei wann gebraucht wird, steht dort und bei den Fragen 21 und 23–25.
 - **Referenz-Repo:** `~/Web/private/annuva-website` (bzw. GitHub `DasRed/annuva-website`) ist die aktuelle Vorlage für Struktur, Config, i18n, Rechtstexte, Dockerfile und CI. Sein `src/style/tokens.css` ist zugleich ein Umsetzungsbeispiel des Civic-Styleguides (Cremeflächen, Source Serif 4 + Atkinson Hyperlegible Next, eigener Petrol-Akzent).
 - **Domains:** IONOS-Connector `domains_list_domains`, ob die Domain schon im Konto ist.
 - **Server/Ports:** Dockhand-Connector `list_containers` auf chronos, um freie Ports (Schema **4xxxx** für Apps/Webseiten, 5xxxx für MCPs) und freie Containernamen zu finden.
@@ -76,21 +77,28 @@ Immer fest, ohne Frage: Schriften selbst gehostet (`@fontsource-variable/*`), ke
 18. **Pflege:** Wer pflegt die Inhalte später, und wie oft ändern sie sich? (Kunde selbst → WordPress oder Markdown-Inhalte ansprechen.)
 19. **Funktionen:** Kontaktformular (Mailversand wie?), Galerie, Termine/Spielplan/Ergebnisse, Downloads, Suche, externe Einbindungen (YouTube, Maps, Instagram → nur mit Zwei-Klick-Lösung), Login/Admin.
 20. **Daten:** keine / SQLite / Postgres 18 auf chronos / externe API.
+21. **Projekt-Doku anzeigen:** Soll die Seite Doku aus Projekt-Repos zeigen (z. B. Doku zum eigenen Produkt oder zu Open-Source-Projekten)?
+    - nein (Empfohlen bei Kunden-, Vereins- und Eventseiten)
+    - ja → `~/Web/ai/website-marco-starker.de/docs-contract.md`, `project-schema.md`, `docs-integration.md` und `docs-release.md` lesen. Im Steckbrief festhalten, welche Repos (Slug, Repo, Branch) eingebunden werden. Die Doku wird beim Build ins Image gebaut, Änderungen kommen per Release der Webseite.
 
 ### Runde 5 – Betrieb und Workflow
-21. **Server:** chronos (Empfohlen, alles Öffentliche) / eros. Port und Containername aus Schritt 1 vorschlagen.
-22. **Repo:** Name unter `DasRed`, privat/öffentlich, Pfad `~/Web/private/<name>`.
-23. **Git:** Darf Claude in diesem Repo committen/pushen? Standard: **nein**, nur mit ausdrücklichem OK.
-24. **Tests:** Unit-Tests gewünscht? (Bei einfachen Seiten oft nein; Lint + Typecheck immer.)
+22. **Server:** chronos (Empfohlen, alles Öffentliche) / eros. Port und Containername aus Schritt 1 vorschlagen.
+23. **Repo:** Name unter `DasRed`, privat/öffentlich, Pfad `~/Web/private/<name>`. Öffentlich nur, wenn andere es nutzen können (Tools, Pakete, MCP-Server, Mods); Kunden-, Vereins- und Produktseiten bleiben privat. Bei öffentlich gilt `~/Web/ai/website-marco-starker.de/public-repo-checklist.md`.
+24. **Doku im Repo:** Soll das Repo Doku nach dem Doku-Vertrag bekommen (`docs/de`, `docs/en`)?
+    - ja (Empfohlen bei öffentlichen Repos, die andere nutzen) → `docs-contract.md` und `docs-templates.md` lesen und den Seitensatz der passenden Projektart vorschlagen; dazu `docs.yml` und das Secret `WEBSITE_RELEASE_TOKEN` nach `docs-release.md`
+    - nein (Empfohlen bei privaten Repos)
+25. **marco-starker.de:** Soll das Projekt auf marco-starker.de erscheinen (Open Source, Produkt, Referenz, Experiment)? Bei Kundenseiten nur mit Einverständnis des Kunden. Ja → Eintrag nach `~/Web/ai/website-marco-starker.de/project-schema.md` (Abschnitt 4) als Vorschlag vorbereiten; das Repo marco-starker.de nicht selbst ändern.
+26. **Git:** Darf Claude in diesem Repo committen/pushen? Standard: **nein**, nur mit ausdrücklichem OK.
+27. **Tests:** Unit-Tests gewünscht? (Bei einfachen Seiten oft nein; Lint + Typecheck immer.)
 
 ### Runde 6 – Geschäftliches (nur Kundenseiten)
-25. **Abrechnung** nach Marcos Modell: Ersteinrichtung (deckt 1. Jahr ab), Hosting 60 €/Jahr, Domains 1:1 zum IONOS-Preis, Stundensatz 80 €/h (Sonderfälle nachfragen). Direkt oder über Philipp?
-26. **Angebot:** Pakete/Angebot nötig? Termin oder Deadline?
-27. **Annuva:** Kunde/Projekt in Annuva anlegen?
+28. **Abrechnung** nach Marcos Modell: Ersteinrichtung (deckt 1. Jahr ab), Hosting 60 €/Jahr, Domains 1:1 zum IONOS-Preis, Stundensatz 80 €/h (Sonderfälle nachfragen). Direkt oder über Philipp?
+29. **Angebot:** Pakete/Angebot nötig? Termin oder Deadline?
+30. **Annuva:** Kunde/Projekt in Annuva anlegen?
 
 ## 3. Steckbrief freigeben lassen
 
-Fasse alles als kurzen **Projektsteckbrief** im Chat zusammen. Abschnitte: Projekt & Ziel, Design (Grundlage, Styleguide, Akzentfarbe, Schriften, Markenmomente, Hell/Dunkel, Bildsprache, Ton), Domain & Betrieb, Technik, Inhalte & Funktionen, Rechtliches, Workflow, ggf. Geschäftliches. Markiere klar, was gesetzt (Standard) und was entschieden wurde, und liste offene Punkte.
+Fasse alles als kurzen **Projektsteckbrief** im Chat zusammen. Abschnitte: Projekt & Ziel, Design (Grundlage, Styleguide, Akzentfarbe, Schriften, Markenmomente, Hell/Dunkel, Bildsprache, Ton), Domain & Betrieb, Technik, Inhalte & Funktionen, Doku & Portfolio (Projekt-Doku, Doku im Repo, öffentlich/privat, marco-starker.de), Rechtliches, Workflow, ggf. Geschäftliches. Markiere klar, was gesetzt (Standard) und was entschieden wurde, und liste offene Punkte.
 
 Dann **auf Freigabe warten**. Erst nach „ok“ / „los“ geht es weiter. Der Steckbrief wandert später als Kontext in `CLAUDE.md` und `README.md` des Repos.
 
@@ -132,6 +140,12 @@ src/
 **Docker:** Einstufiges `node:26-alpine`-Image, kopiert `.next/standalone`, `.next/static`, `public` und zuletzt `package.json`; `USER node`; `EXPOSE <port>`; HEALTHCHECK per `wget` auf `/api/health`.
 
 **CI:** `.github/workflows/ci.yml` nutzt `DasRed/github-workflows/.github/workflows/node-docker.yml@v1` mit `dockhand-environment: chronos` und `container-name: <name>`, Secret `DOCKHAND_TOKEN`. Branches: Arbeit auf `develop`, Release auf `main`, Conventional Commits.
+
+**Doku und Portfolio (nur wenn in den Fragen 21 und 23–25 gewählt):**
+- Projekt-Doku anzeigen: nach `~/Web/ai/website-marco-starker.de/docs-integration.md` umsetzen (übersetzte Pfade, `scripts/fetch-docs.ts` als `prebuild`, `ProjectDocsService`, Doku-Layout, `.releaserc.json` mit `docs` → Patch, Concurrency in `ci.yml`), Projektdaten nach `project-schema.md`.
+- Doku im Repo: `docs/de` und `docs/en` nach `docs-contract.md` mit dem Seitensatz aus `docs-templates.md` anlegen; das README verlinkt auf die Doku-Seite; `docs.yml` nach `docs-release.md`. Token und Secret setzt Marco.
+- Öffentliches Repo: `public-repo-checklist.md` vor dem Umschalten abarbeiten und das Ergebnis im Bericht nennen. Umschalten macht Marco.
+- marco-starker.de: Eintrag (Daten, Übersetzungen, ggf. Fallstudie) als Vorschlag im Bericht liefern, nicht ins Repo marco-starker.de schreiben.
 
 **Infrastruktur – nur vorbereiten, nicht selbst ausführen:**
 - Compose-Service für `~/Web/private/docker-environment/chronos/<stack>/compose.yaml` als Vorschlag liefern, **nicht committen**.
