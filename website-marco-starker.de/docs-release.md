@@ -158,7 +158,7 @@ for repo in hetzner-mcp nginx-proxy-manager-mcp discord-mcp; do
 done
 ```
 
-Den Wert im Passwortmanager bzw. in `~/Web/ai/secrets/.env` ablegen, nie im Repo.
+Den Wert im Passwortmanager bzw. in `secrets/.env` ablegen (von Git ignoriert), nie committen.
 
 ## 8. Prüfen
 

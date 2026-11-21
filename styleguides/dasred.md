@@ -103,4 +103,4 @@ Wie Superhero: Strahlen, Wolken, Schweben – langsam; `prefers-reduced-motion` 
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/dasred.md` (und für Details `superhero.md`) als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**, Markenfarbe Rot. Roter Himmel im Hero, goldenes Emblem **[Symbol]**, Name **[Name]** mit Alias **[Alias]**. Gold nur für Aktionen.
+> Verwende `./styleguides/dasred.md` (und für Details `superhero.md`) als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**, Markenfarbe Rot. Roter Himmel im Hero, goldenes Emblem **[Symbol]**, Name **[Name]** mit Alias **[Alias]**. Gold nur für Aktionen.

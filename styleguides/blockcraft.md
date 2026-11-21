@@ -117,4 +117,4 @@ Splash-Text auf kleinen Bildschirmen ausblenden oder unter den Titel setzen; Inv
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/blockcraft.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Baue die Seite als Voxel-Welt: Himmel-Hero, Grasreihe als Horizont, Inhalte in Stein- und Planken-Abschnitten. Zeige **[Fähigkeiten/Angebote]** als Inventar und **[Fortschritt]** als XP-Leiste. Erzeuge alle Texturen selbst; keine fremden Spiel-Assets.
+> Verwende `./styleguides/blockcraft.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Baue die Seite als Voxel-Welt: Himmel-Hero, Grasreihe als Horizont, Inhalte in Stein- und Planken-Abschnitten. Zeige **[Fähigkeiten/Angebote]** als Inventar und **[Fortschritt]** als XP-Leiste. Erzeuge alle Texturen selbst; keine fremden Spiel-Assets.

@@ -108,4 +108,4 @@ Hellblaues Rasterpapier als Seitengrund, darauf einzelne Abschnitte als tiefblau
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/blueprint.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Setze Hero und Leistungsübersicht als Blaupause um, den Rest auf Zeichenpapier. Die Hero-Zeichnung zeigt **[System/Ablauf/Grundriss]**. Karten als Zeichnungsblätter mit Schriftfeld.
+> Verwende `./styleguides/blueprint.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Setze Hero und Leistungsübersicht als Blaupause um, den Rest auf Zeichenpapier. Die Hero-Zeichnung zeigt **[System/Ablauf/Grundriss]**. Karten als Zeichnungsblätter mit Schriftfeld.

@@ -100,4 +100,4 @@ Keine. Nur Farbwechsel bei Hover. Magazine bewegen sich nicht.
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/editorial.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Zeitschriftenkopf mit Titel **[Name]** und Leitspruch **[Leitspruch]**, Startseite als Titelgeschichte über **[Thema]**, Faktenkasten für **[Kernaussagen]**, Inhalte als Rubriken und Index-Listen.
+> Verwende `./styleguides/editorial.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Zeitschriftenkopf mit Titel **[Name]** und Leitspruch **[Leitspruch]**, Startseite als Titelgeschichte über **[Thema]**, Faktenkasten für **[Kernaussagen]**, Inhalte als Rubriken und Index-Listen.

@@ -110,4 +110,4 @@ Kariertes Papier, Fließtext in Kuli-Dunkelblau, handschriftliche Überschriften
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/narf.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Hero als Laborbuchseite mit Masterplan in **[Schritte]**, Textmarker auf **[Kernsatz]**, Foto eingeklebt. Humor nur in Mikrotexten; keine Cartoonfiguren.
+> Verwende `./styleguides/narf.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Hero als Laborbuchseite mit Masterplan in **[Schritte]**, Textmarker auf **[Kernsatz]**, Foto eingeklebt. Humor nur in Mikrotexten; keine Cartoonfiguren.

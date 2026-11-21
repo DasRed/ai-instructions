@@ -111,4 +111,4 @@ Panels untereinander; Sprechblasen und Gedankenblasen verkleinern oder unter das
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/comic.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Baue den Hero als Comicseite mit drei Panels; die Sprechblase sagt **[Begrüßung]**, der Explosionsstern zeigt **[Kennzahl]**. Nur eigene Motive, keine bekannten Figuren.
+> Verwende `./styleguides/comic.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Baue den Hero als Comicseite mit drei Panels; die Sprechblase sagt **[Begrüßung]**, der Explosionsstern zeigt **[Kennzahl]**. Nur eigene Motive, keine bekannten Figuren.

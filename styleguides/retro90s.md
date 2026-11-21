@@ -112,4 +112,4 @@ Schwarzer Weltraum mit gekachelten Sternen. In der Mitte der Name in Chrom-Lette
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/retro90s.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Anlass]**. Startseite als 90er-Homepage: Chrom-Titel **[Name]**, Planeten-Navigation für **[Abschnitte]**, Laufschrift mit **[Text]**. Systemschriften, moderner und barrierearmer Code darunter.
+> Verwende `./styleguides/retro90s.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Anlass]**. Startseite als 90er-Homepage: Chrom-Titel **[Name]**, Planeten-Navigation für **[Abschnitte]**, Laufschrift mit **[Text]**. Systemschriften, moderner und barrierearmer Code darunter.

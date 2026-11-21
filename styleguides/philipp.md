@@ -160,4 +160,4 @@ Ein roter Einstieg mit sich abtippenden Code-Zeilen, einer großen, sehr gut les
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/philipp.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**, Markenfarbe **[Rot oder andere kräftige Farbe]**. Roter Hero mit Code-Zeilen in **[Sprachen]**, Bento-Übersicht mit **[Fakten]**, Leistungen als nummerierte Zeilen, Fahrplan in **[Schritte]**, Werdegang als Zeitleiste, Abschnitte im Farbwechsel Weiß/Hellgrau/Dunkelgrau/Rot, Hell- und Dunkelmodus.
+> Verwende `./styleguides/philipp.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**, Markenfarbe **[Rot oder andere kräftige Farbe]**. Roter Hero mit Code-Zeilen in **[Sprachen]**, Bento-Übersicht mit **[Fakten]**, Leistungen als nummerierte Zeilen, Fahrplan in **[Schritte]**, Werdegang als Zeitleiste, Abschnitte im Farbwechsel Weiß/Hellgrau/Dunkelgrau/Rot, Hell- und Dunkelmodus.

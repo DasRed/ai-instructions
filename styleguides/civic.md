@@ -117,7 +117,7 @@ Vor der Umsetzung diese Entscheidungen treffen:
 
 ### Kompakter Prompt zum Wiederverwenden
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/civic.md` als Gestaltungsreferenz. Das Projekt ist **[Produkt/Website]** für **[Zielgruppe]** mit den Hauptaufgaben **[Aufgaben]**. Übertrage die Prinzipien für Typografie, warme Flächen, klare Service-Karten, Suche und gezielte Markenmomente. Passe **[Farben/Logo/Bildwelt/Ton]** an die Marke **[Name]** an. Die wichtigsten Seiten/Funktionen sind **[Seiten/Funktionen]**. Setze responsive und barrierearm um.
+> Verwende `./styleguides/civic.md` als Gestaltungsreferenz. Das Projekt ist **[Produkt/Website]** für **[Zielgruppe]** mit den Hauptaufgaben **[Aufgaben]**. Übertrage die Prinzipien für Typografie, warme Flächen, klare Service-Karten, Suche und gezielte Markenmomente. Passe **[Farben/Logo/Bildwelt/Ton]** an die Marke **[Name]** an. Die wichtigsten Seiten/Funktionen sind **[Seiten/Funktionen]**. Setze responsive und barrierearm um.
 
 ### Prüfliste für das Ergebnis
 

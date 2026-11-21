@@ -102,4 +102,4 @@ Gebrochenes Weiß, fast schwarze Schrift und Linien, Signalorange für Aktionen 
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/studio.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Leistungen als nummerierte Zeilen: **[Leistungen]**. Fahrplan der Zusammenarbeit in **[Schritte]**. Kunden als typografische Liste. Signalfarbe **[Farbe]** nur für Aktion und Hover; Display-Schrift **[breit/normal]**.
+> Verwende `./styleguides/studio.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Leistungen als nummerierte Zeilen: **[Leistungen]**. Fahrplan der Zusammenarbeit in **[Schritte]**. Kunden als typografische Liste. Signalfarbe **[Farbe]** nur für Aktion und Hover; Display-Schrift **[breit/normal]**.

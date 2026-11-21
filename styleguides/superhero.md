@@ -106,4 +106,4 @@ Eine Rot-Gold-Variante desselben Stils beschreibt `dasred.md`.
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/superhero.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Helden-Hero mit eigenem Emblem **[Symbol]** über **[Name]**, Porträt mit Speed-Lines. Abschnitte: Superkräfte = **[Fähigkeiten]**, Einsätze = **[Projekte]**, Notruf = Kontakt. Keine bestehenden Helden-Motive.
+> Verwende `./styleguides/superhero.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Helden-Hero mit eigenem Emblem **[Symbol]** über **[Name]**, Porträt mit Speed-Lines. Abschnitte: Superkräfte = **[Fähigkeiten]**, Einsätze = **[Projekte]**, Notruf = Kontakt. Keine bestehenden Helden-Motive.

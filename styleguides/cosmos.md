@@ -107,4 +107,4 @@ Fast schwarzes Nachtblau als Grund, darüber ein langsam driftendes Sternenfeld 
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/cosmos.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Stimmungsvoller Weltraum-Hero mit Verlaufsüberschrift **[Claim]** und Planetensystem um **[Bild/Produkt]**; darunter sehr klare Glas-Karten für **[Inhalte]** und ein Logbuch für **[Chronik]**.
+> Verwende `./styleguides/cosmos.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Stimmungsvoller Weltraum-Hero mit Verlaufsüberschrift **[Claim]** und Planetensystem um **[Bild/Produkt]**; darunter sehr klare Glas-Karten für **[Inhalte]** und ein Logbuch für **[Chronik]**.

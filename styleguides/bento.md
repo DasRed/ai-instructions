@@ -167,4 +167,4 @@ Sparsam: nur Hover-Anheben der Kacheln (0.25 s) und Farbwechsel. Keine Daueranim
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/bento.md` als Gestaltungsreferenz. Das Projekt ist **[Website/Produkt]** für **[Zielgruppe]**. Baue oben eine Bento-Übersicht mit diesen Kacheln: **[Kacheln]**. Übernimm Raster, Kachelform, Typografie und Hell-/Dunkelmodus; ersetze Petrol bei Bedarf durch **[Markenfarbe]** und prüfe dann alle Kontraste neu.
+> Verwende `./styleguides/bento.md` als Gestaltungsreferenz. Das Projekt ist **[Website/Produkt]** für **[Zielgruppe]**. Baue oben eine Bento-Übersicht mit diesen Kacheln: **[Kacheln]**. Übernimm Raster, Kachelform, Typografie und Hell-/Dunkelmodus; ersetze Petrol bei Bedarf durch **[Markenfarbe]** und prüfe dann alle Kontraste neu.

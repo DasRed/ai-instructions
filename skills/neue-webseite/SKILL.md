@@ -5,8 +5,9 @@ description: Wenn Marco eine neue Webseite bauen will (Kunden-, Vereins-, Turnie
 
 # Neue Webseite für Marco
 
-> Quelle dieses Skills: `~/Web/ai/skills/neue-webseite/SKILL.md` (versioniert). Die Kopie im Claude-Konto
-> wird bei Änderungen daraus synchronisiert.
+> Quelle dieses Skills: `skills/neue-webseite/SKILL.md` im Repo `DasRed/ai-instructions` (versioniert). Die Kopie im
+> Claude-Konto wird bei Änderungen daraus synchronisiert. Alle Pfade ohne Repo-Angabe gehen vom Root dieses Repos aus
+> (lokaler Clone oder GitHub).
 
 Ablauf: **Kontext sammeln → Rahmenbedingungen abfragen → Steckbrief freigeben lassen → umsetzen.**
 Vor der Freigabe des Steckbriefs wird **keine Datei angelegt**, kein Repo erstellt, nichts deployt.
@@ -19,14 +20,14 @@ Unterhaltung auf Deutsch, Code/Kommentare/Dateinamen/README auf Englisch.
 Bevor du fragst, schau nach, was schon bekannt ist, damit du nichts doppelt abfragst:
 
 - **Memory:** passende Projekt-/Kundendateien (z. B. Selbstständigkeit Webseiten, Glonntaler Cup, Copa, Annuva, aspect42).
-- **Code-Guidelines:** `~/Web/ai/CodeGuidlines.md` und `~/Web/ai/intellij-code-styles.xml`.
-- **Styleguides:** alle Dateien in `~/Web/ai/styleguides/` auflisten und von jedem Titel, Zweck und Kurzfassung lesen, damit du in der Design-Runde passende Styleguides vorschlagen kannst. Standard ist `civic.md` (dort zusätzlich Abschnitt 7 kennen).
-- **Webseiten-Bausteine:** `~/Web/ai/website-marco-starker.de/README.md` lesen (Doku-Vertrag, Projektdaten, Doku-Einbindung, öffentliche Repos). Welche Datei wann gebraucht wird, steht dort und bei den Fragen 21 und 23–25.
-- **Referenz-Repo:** `~/Web/private/annuva-website` (bzw. GitHub `DasRed/annuva-website`) ist die aktuelle Vorlage für Struktur, Config, i18n, Rechtstexte, Dockerfile und CI. Sein `src/style/tokens.css` ist zugleich ein Umsetzungsbeispiel des Civic-Styleguides (Cremeflächen, Source Serif 4 + Atkinson Hyperlegible Next, eigener Petrol-Akzent).
+- **Code-Guidelines:** `CodeGuidlines.md` und `intellij-code-styles.xml`.
+- **Styleguides:** alle Dateien in `styleguides/` auflisten und von jedem Titel, Zweck und Kurzfassung lesen, damit du in der Design-Runde passende Styleguides vorschlagen kannst. Standard ist `civic.md` (dort zusätzlich Abschnitt 7 kennen).
+- **Webseiten-Bausteine:** `website-marco-starker.de/README.md` lesen (Doku-Vertrag, Projektdaten, Doku-Einbindung, öffentliche Repos). Welche Datei wann gebraucht wird, steht dort und bei den Fragen 21 und 23–25.
+- **Referenz-Repo:** `DasRed/annuva-website` ist die aktuelle Vorlage für Struktur, Config, i18n, Rechtstexte, Dockerfile und CI. Sein `src/style/tokens.css` ist zugleich ein Umsetzungsbeispiel des Civic-Styleguides (Cremeflächen, Source Serif 4 + Atkinson Hyperlegible Next, eigener Petrol-Akzent).
 - **Domains:** IONOS-Connector `domains_list_domains`, ob die Domain schon im Konto ist.
 - **Server/Ports:** Dockhand-Connector `list_containers` auf chronos, um freie Ports (Schema **4xxxx** für Apps/Webseiten, 5xxxx für MCPs) und freie Containernamen zu finden.
 - **Proxy:** NPM-Connector `list_proxy_hosts`, ob es den Host schon gibt.
-- Liegt unter `~/Web/private/<name>` schon ein Repo, erst das lesen.
+- Gibt es das Repo `DasRed/<name>` schon, erst das lesen.
 
 ## 2. Rahmenbedingungen abfragen
 
@@ -43,12 +44,12 @@ Bevor du fragst, schau nach, was schon bekannt ist, damit du nichts doppelt abfr
 
 ### Runde 2 – Design
 5. **Design-Grundlage:**
-   - Styleguide aus `~/Web/ai/styleguides/` (Empfohlen) – welcher, klärt Frage 6
+   - Styleguide aus `styleguides/` (Empfohlen) – welcher, klärt Frage 6
    - CI des Kunden (Logo, Farben, Schriften vorhanden)
    - Styleguide-Prinzipien + Farben/Logo aus Kunden-CI
    - Wie eine bestehende Seite von Marco (z. B. annuva-website)
    - „Frei neu entwerfen“ geht über Freitext.
-6. **Styleguide** (bei Styleguide-Grundlage oder Mischung mit Kunden-CI): Welcher Styleguide aus `~/Web/ai/styleguides/`?
+6. **Styleguide** (bei Styleguide-Grundlage oder Mischung mit Kunden-CI): Welcher Styleguide aus `styleguides/`?
    - Standard: `civic.md` als erste Option mit „(Empfohlen)“.
    - Dazu bis zu drei weitere, die laut ihrem Zweck am besten zu Art, Zielgruppe und Tonalität der Seite passen, jeweils mit einer Kurzbeschreibung aus Titel und Zweck.
    - Im Fragetext alle verfügbaren Styleguides kurz nennen, damit Marco per Freitext auch einen anderen wählen kann. Die Liste immer frisch aus dem Ordner lesen, nicht aus dem Gedächtnis.
@@ -79,15 +80,15 @@ Immer fest, ohne Frage: Schriften selbst gehostet (`@fontsource-variable/*`), ke
 20. **Daten:** keine / SQLite / Postgres 18 auf chronos / externe API.
 21. **Projekt-Doku anzeigen:** Soll die Seite Doku aus Projekt-Repos zeigen (z. B. Doku zum eigenen Produkt oder zu Open-Source-Projekten)?
     - nein (Empfohlen bei Kunden-, Vereins- und Eventseiten)
-    - ja → `~/Web/ai/website-marco-starker.de/docs-contract.md`, `project-schema.md`, `docs-integration.md` und `docs-release.md` lesen. Im Steckbrief festhalten, welche Repos (Slug, Repo, Branch) eingebunden werden. Die Doku wird beim Build ins Image gebaut, Änderungen kommen per Release der Webseite.
+    - ja → `website-marco-starker.de/docs-contract.md`, `project-schema.md`, `docs-integration.md` und `docs-release.md` lesen. Im Steckbrief festhalten, welche Repos (Slug, Repo, Branch) eingebunden werden. Die Doku wird beim Build ins Image gebaut, Änderungen kommen per Release der Webseite.
 
 ### Runde 5 – Betrieb und Workflow
 22. **Server:** chronos (Empfohlen, alles Öffentliche) / eros. Port und Containername aus Schritt 1 vorschlagen.
-23. **Repo:** Name unter `DasRed`, privat/öffentlich, Pfad `~/Web/private/<name>`. Öffentlich nur, wenn andere es nutzen können (Tools, Pakete, MCP-Server, Mods); Kunden-, Vereins- und Produktseiten bleiben privat. Bei öffentlich gilt `~/Web/ai/website-marco-starker.de/public-repo-checklist.md`.
+23. **Repo:** Name unter `DasRed`, privat/öffentlich. Öffentlich nur, wenn andere es nutzen können (Tools, Pakete, MCP-Server, Mods); Kunden-, Vereins- und Produktseiten bleiben privat. Bei öffentlich gilt `website-marco-starker.de/public-repo-checklist.md`.
 24. **Doku im Repo:** Soll das Repo Doku nach dem Doku-Vertrag bekommen (`docs/de`, `docs/en`)?
     - ja (Empfohlen bei öffentlichen Repos, die andere nutzen) → `docs-contract.md` und `docs-templates.md` lesen und den Seitensatz der passenden Projektart vorschlagen; dazu `docs.yml` und das Secret `WEBSITE_RELEASE_TOKEN` nach `docs-release.md`
     - nein (Empfohlen bei privaten Repos)
-25. **marco-starker.de:** Soll das Projekt auf marco-starker.de erscheinen (Open Source, Produkt, Referenz, Experiment)? Bei Kundenseiten nur mit Einverständnis des Kunden. Ja → Eintrag nach `~/Web/ai/website-marco-starker.de/project-schema.md` (Abschnitt 4) als Vorschlag vorbereiten; das Repo marco-starker.de nicht selbst ändern.
+25. **marco-starker.de:** Soll das Projekt auf marco-starker.de erscheinen (Open Source, Produkt, Referenz, Experiment)? Bei Kundenseiten nur mit Einverständnis des Kunden. Ja → Eintrag nach `website-marco-starker.de/project-schema.md` (Abschnitt 4) als Vorschlag vorbereiten; das Repo marco-starker.de nicht selbst ändern.
 26. **Git:** Darf Claude in diesem Repo committen/pushen? Standard: **nein**, nur mit ausdrücklichem OK.
 27. **Tests:** Unit-Tests gewünscht? (Bei einfachen Seiten oft nein; Lint + Typecheck immer.)
 
@@ -105,7 +106,7 @@ Dann **auf Freigabe warten**. Erst nach „ok“ / „los“ geht es weiter. Der
 ## 4. Umsetzung nach Marcos Standard
 
 **Design:**
-- Den gewählten Styleguide aus `~/Web/ai/styleguides/` vollständig lesen und seine Farbrollen als Tokens in `src/style/tokens.css` abbilden (Rollen semantisch benennen). Bringt der Styleguide einen Abschnitt „Tokens als CSS“ mit, diesen als Ausgangspunkt nehmen und an die Entscheidungen aus dem Steckbrief anpassen.
+- Den gewählten Styleguide aus `styleguides/` vollständig lesen und seine Farbrollen als Tokens in `src/style/tokens.css` abbilden (Rollen semantisch benennen). Bringt der Styleguide einen Abschnitt „Tokens als CSS“ mit, diesen als Ausgangspunkt nehmen und an die Entscheidungen aus dem Steckbrief anpassen.
 - Bei Civic den Akzent ersetzen und die Identität des Vorbilds (Wappen, Rose, Ortsbilder, Ortsnamen) nie übernehmen. Allgemein keine Marken, Figuren oder geschützten Motive übernehmen, an die ein Styleguide nur angelehnt ist (z. B. Comic-Helden, Spiele).
 - Vor dem Abschluss die **Prüfliste des Styleguides** durchgehen (Civic: Abschnitt 7, sonst „Dos und Don'ts“) und das Ergebnis im Bericht nennen.
 - Bei Kunden-CI dessen Werte als Tokens anlegen; fehlende Werte als offene Punkte melden statt zu raten.
@@ -142,13 +143,13 @@ src/
 **CI:** `.github/workflows/ci.yml` nutzt `DasRed/github-workflows/.github/workflows/node-docker.yml@v1` mit `dockhand-environment: chronos` und `container-name: <name>`, Secret `DOCKHAND_TOKEN`. Branches: Arbeit auf `develop`, Release auf `main`, Conventional Commits.
 
 **Doku und Portfolio (nur wenn in den Fragen 21 und 23–25 gewählt):**
-- Projekt-Doku anzeigen: nach `~/Web/ai/website-marco-starker.de/docs-integration.md` umsetzen (übersetzte Pfade, `scripts/fetch-docs.ts` als `prebuild`, `DocsRepository`, Doku-Layout, semantic-release-Konfiguration im Schlüssel `"release"` der `package.json` mit `docs` → Patch, Concurrency in `ci.yml`), Projektdaten nach `project-schema.md`.
+- Projekt-Doku anzeigen: nach `website-marco-starker.de/docs-integration.md` umsetzen (übersetzte Pfade, `scripts/fetch-docs.ts` als `prebuild`, `DocsRepository`, Doku-Layout, semantic-release-Konfiguration im Schlüssel `"release"` der `package.json` mit `docs` → Patch, Concurrency in `ci.yml`), Projektdaten nach `project-schema.md`.
 - Doku im Repo: `docs/de` und `docs/en` nach `docs-contract.md` mit dem Seitensatz aus `docs-templates.md` anlegen; das README verlinkt auf die Doku-Seite; `docs.yml` nach `docs-release.md`. Token und Secret setzt Marco.
 - Öffentliches Repo: `public-repo-checklist.md` vor dem Umschalten abarbeiten und das Ergebnis im Bericht nennen. Umschalten macht Marco.
 - marco-starker.de: Eintrag (Daten, Übersetzungen, ggf. Fallstudie) als Vorschlag im Bericht liefern, nicht ins Repo marco-starker.de schreiben.
 
 **Infrastruktur – nur vorbereiten, nicht selbst ausführen:**
-- Compose-Service für `~/Web/private/docker-environment/chronos/<stack>/compose.yaml` als Vorschlag liefern, **nicht committen**.
+- Compose-Service für `chronos/<stack>/compose.yaml` im Repo `docker-environment` als Vorschlag liefern, **nicht committen**.
 - DNS-Einträge (IONOS), NPM-Proxy-Host (inkl. Redirects der Neben-Domains auf die kanonische Adresse, Let's Encrypt, Force SSL) und Dockhand-Stack richtet Marco selbst ein. Nur mit ausdrücklichem Auftrag über die Connectoren ändern.
 
 **Vor dem Abschluss:** `npm test` und `npm run build` müssen grün sein. Ehrlich berichten, was offen ist (fehlende Rechtsdaten, Platzhaltertexte, Bilder, Design-Werte, Infrastruktur-Schritte für Marco). Kein Commit/Push ohne ausdrückliches OK.

@@ -104,4 +104,4 @@ Fast weißes Papier, schwarze Schrift, eine einzige Akzentfarbe für den blinken
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/hello-world.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Hero mit sich abtippenden „Hello, World!“-Zeilen in **[Sprachen]** und der Begrüßung **[Claim]** als Ausgabe. Viel Weißraum, eine Akzentfarbe **[Farbe]** für Cursor und Links.
+> Verwende `./styleguides/hello-world.md` als Gestaltungsreferenz. Das Projekt ist **[Website]** für **[Zielgruppe]**. Hero mit sich abtippenden „Hello, World!“-Zeilen in **[Sprachen]** und der Begrüßung **[Claim]** als Ausgabe. Viel Weißraum, eine Akzentfarbe **[Farbe]** für Cursor und Links.

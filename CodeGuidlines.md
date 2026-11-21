@@ -4,7 +4,7 @@
 - dokumentation ist immer in englisch
 
 ## Format
-Es müssen die Formatierungsrichtlinien in /Users/mstarker/Web/ai/intellij-code-styles.xml eingehalten werden
+Es müssen die Formatierungsrichtlinien in ./intellij-code-styles.xml eingehalten werden
 
 Kurzfassung für Agenten, die den IntelliJ-Formatter nicht ausführen können:
 - 4 Leerzeichen Einrückung, keine Tabs

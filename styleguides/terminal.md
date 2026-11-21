@@ -107,4 +107,4 @@ Fast schwarzer Grund mit einem Hauch Grün, Text in hellem Grau-Grün, Akzente i
 
 ## Kompakter Prompt
 
-> Verwende `/Users/mstarker/Web/ai/styleguides/terminal.md` als Gestaltungsreferenz. Das Projekt ist **[Website/Tool]** für **[Zielgruppe]**. Hero als Terminal mit den Befehlen **[Befehle]** und ihren Ausgaben, Fähigkeiten als `skills.json`, Footer als Statuszeile.
+> Verwende `./styleguides/terminal.md` als Gestaltungsreferenz. Das Projekt ist **[Website/Tool]** für **[Zielgruppe]**. Hero als Terminal mit den Befehlen **[Befehle]** und ihren Ausgaben, Fähigkeiten als `skills.json`, Footer als Statuszeile.
