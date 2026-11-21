@@ -12,23 +12,97 @@ enough for an agent to build a page from it without seeing a reference. The styl
 
 ## Overview
 
-| Styleguide  | File             | Style                                              | Suits                                                  |
-|-------------|------------------|----------------------------------------------------|--------------------------------------------------------|
-| Civic       | `civic.md`       | warm cream surfaces, serif headlines, one accent   | service-oriented sites, default for new sites          |
-| Bento       | `bento.md`       | tile grid in petrol, light and dark                | portfolios, product pages, dashboards                  |
-| Blockcraft  | `blockcraft.md`  | voxel world of blocks, pixel font                  | game jams, coding courses, gaming communities          |
-| Blueprint   | `blueprint.md`   | drafting paper, blueprints, pencil yellow          | engineering offices, architecture, technical consulting |
-| Comic       | `comic.md`       | newsprint, ink, halftone dots                      | events, offers for kids and teens, product launches    |
-| Cosmos      | `cosmos.md`      | deep space, violet and cyan, glass surfaces        | tech start-ups, AI products, astronomy                 |
-| DasRed      | `dasred.md`      | red sky, purple night, gold                        | brands, teams, streamers with a red identity           |
-| Editorial   | `editorial.md`   | magazine on warm paper                             | authors, consultancies, culture, long reads            |
-| Hello World | `hello-world.md` | white paper, blinking cursor, code as decoration   | developer portfolios, dev tools, tech blogs            |
-| Narf        | `narf.md`        | lab notebook, ballpoint blue, highlighter          | maker portfolios, hackspaces, side projects            |
-| Philipp     | `philipp.md`     | code bento in signal red                           | freelancers, agencies, dev tools with a strong brand colour |
-| Retro 90s   | `retro90s.md`    | homepage from 1996                                 | anniversaries, retro events, fun pages                 |
-| Studio      | `studio.md`      | Swiss grid, black and signal orange                | agencies, studios, consultancies                       |
-| Superhero   | `superhero.md`   | comic hero in sky blue, red and sun yellow         | freelancers, emergency services, campaigns             |
-| Terminal    | `terminal.md`    | dark shell, phosphor green and amber               | dev tools, CLIs, open source, DevOps                   |
+The previews are sample pages built from the colours, fonts and components of each styleguide. Names and contents in them are made up.
+
+### Civic
+
+![Civic preview: cream page with a dark red hero, uppercase serif headline and four service cards](../assets/styleguide-civic.png)
+
+Warm cream surfaces, serif headlines and one strong accent, calm service cards. Suits: service-oriented sites; default for new sites. File: [`civic.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/civic.md)
+
+### Bento
+
+![Bento preview: white rounded tiles on grey-green ground, petrol number, dark status tile and lime tile](../assets/styleguide-bento.png)
+
+Tile grid in petrol with one dark contrast tile and one lime tile, light and dark. Suits: portfolios, product pages, dashboards. File: [`bento.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/bento.md)
+
+### Blockcraft
+
+![Blockcraft preview: pixel headline in a blue sky above a row of grass blocks, inventory slots and a green XP bar below](../assets/styleguide-blockcraft.png)
+
+Voxel world of sky, grass and stone blocks, pixel font, inventory and XP bar. Suits: game jams, coding courses, gaming communities. File: [`blockcraft.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/blockcraft.md)
+
+### Blueprint
+
+![Blueprint preview: deep blue blueprint with a house drawing and yellow dimension line next to two drawing sheets with title blocks on grid paper](../assets/styleguide-blueprint.png)
+
+Grid paper, deep blue blueprints with dimension lines, drawing sheets with title blocks, pencil yellow. Suits: engineering offices, architecture, technical consulting. File: [`blueprint.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/blueprint.md)
+
+### Comic
+
+![Comic preview: comic panels with black borders, yellow Bangers headline, drawn figure with speech bubble and a yellow explosion star](../assets/styleguide-comic.png)
+
+Newsprint with halftone dots, panels in thick ink, speech bubbles and sound effects. Suits: events, offers for kids and teens, product launches. File: [`comic.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/comic.md)
+
+### Cosmos
+
+![Cosmos preview: dark starry sky with violet nebula, headline in a white-to-cyan gradient, planet with orbits and glass cards](../assets/styleguide-cosmos.png)
+
+Deep space with stars and nebulae, gradient headline, glass cards and orbits. Suits: tech start-ups, AI and data products, astronomy. File: [`cosmos.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/cosmos.md)
+
+### DasRed
+
+![DasRed preview: red sky with golden rays, golden hexagon emblem above a large uppercase name, three dark red cards below](../assets/styleguide-dasred.png)
+
+Red sky over purple night, golden rays, golden emblem and a name with stacked shadow. Suits: brands, teams, streamers with a red identity. File: [`dasred.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/dasred.md)
+
+### Editorial
+
+![Editorial preview: bold serif masthead, cover story with rust red drop cap, portrait and fact box on warm paper](../assets/styleguide-editorial.png)
+
+Magazine on warm paper: masthead, cover story with drop cap, fact box, rust red. Suits: authors, consultancies, culture, long reads. File: [`editorial.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/editorial.md)
+
+### Hello World
+
+![Hello World preview: a print code line with blue cursor, large serif headline below on near-white ground](../assets/styleguide-hello-world.png)
+
+White paper, a line of code with a blinking cursor and its output below in a large serif. Suits: developer portfolios, dev tools, tech blogs. File: [`hello-world.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/hello-world.md)
+
+### Narf
+
+![Narf preview: handwritten name with a word circled in red on grid paper, yellow highlighter, taped photo and two sticky notes](../assets/styleguide-narf.png)
+
+Lab notebook on grid paper, handwriting, highlighter, red circles, taped photo and sticky notes. Suits: maker portfolios, hackspaces, side projects. File: [`narf.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/narf.md)
+
+### Philipp
+
+![Philipp preview: red hero with code lines, white name and portrait tile, a row of tiles below with a red number and a dark status tile](../assets/styleguide-philipp.png)
+
+Red hero with lines of code, bold sans headline, portrait tile and a bento row below. Suits: freelancers, agencies, dev tools with a strong brand colour. File: [`philipp.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/philipp.md)
+
+### Retro 90s
+
+![Retro 90s preview: starfield with marquee, name in chrome lettering, planets as links, grey 3D buttons and a green hit counter](../assets/styleguide-retro90s.png)
+
+Homepage from 1996: starfield, chrome lettering, planets as navigation, grey 3D buttons, hit counter. Suits: anniversaries, retro events, fun pages. File: [`retro90s.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/retro90s.md)
+
+### Studio
+
+![Studio preview: huge wide uppercase headline with an orange dot, numbered service rows with black rules below, one highlighted in black](../assets/styleguide-studio.png)
+
+Swiss grid: huge wide capitals, black rules, numbered rows, signal orange. Suits: agencies, studios, consultancies. File: [`studio.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/studio.md)
+
+### Superhero
+
+![Superhero preview: blue sky with sun rays and clouds, yellow and red hexagon emblem above a large name with red shadow, yellow button](../assets/styleguide-superhero.png)
+
+Blue sky with sun rays and clouds, own emblem, name with red shadow, sun yellow. Suits: freelancers, emergency services, campaigns. File: [`superhero.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/superhero.md)
+
+### Terminal
+
+![Terminal preview: dark terminal windows with green prompt, name as output of whoami, JSON with syntax highlighting and a status bar](../assets/styleguide-terminal.png)
+
+Dark shell with windows, prompt, typed commands, syntax highlighting and a status bar. Suits: dev tools, CLIs, open source, DevOps. File: [`terminal.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/terminal.md)
 
 ## Structure of a styleguide
 
@@ -53,7 +127,7 @@ checklist.
 Give the agent the whole styleguide and say what comes from the project:
 
 ```markdown
-Design the landing page following ./styleguides/bento.md.
+Design the landing page following ~/Web/ai/styleguides/bento.md.
 Keep layout, typography and components, but replace the petrol accent with our brand colour #1F6FEB.
 Check the result against section "Dos und Don'ts" before you finish.
 ```
