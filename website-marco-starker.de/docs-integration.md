@@ -5,7 +5,7 @@ Vorbild: marco-starker.de. Gilt für jede Seite, die Projekt-Doku zeigen soll (a
 
 ## 1. Grundsatz
 
-- Die Doku wird **beim Build** aus den Repos geholt, geprüft und als statische Seiten **ins Docker-Image gebaut**.
+- Die Doku wird **beim Build** aus den Repos geholt, geprüft und **ins Docker-Image gebaut** (als `.docs-cache`, siehe Abschnitt 3).
   Zur Laufzeit liest die Webseite nichts von GitHub.
 - Jede Doku-Änderung führt über ein **Release der Webseite** auf die Seite (`docs-release.md`). Ein Image ist damit
   immer ein vollständiger, reproduzierbarer Stand; ein Rollback nimmt die passende Doku mit.
@@ -43,19 +43,25 @@ Skript `scripts/fetch-docs.ts`, als npm-Skript `docs:fetch` und automatisch vor 
    Seite „Stand“ und „Auf GitHub ansehen“ zeigen kann.
 
 `DOCS_OFFLINE=1` überspringt das Laden und nutzt den vorhandenen `.docs-cache` (lokale Entwicklung ohne Netz).
-Fehlt der Cache dann, bricht das Skript mit einem Hinweis ab.
+Fehlt der Cache dann, bricht das Skript mit einem Hinweis ab. `DOCS_LOCAL_ROOT=<ordner>` liest die Repos stattdessen
+aus lokalen Klonen (`<ordner>/<repo-name>/<path>`), etwa zum Testen einer Doku vor dem Push.
 
-Im Code liest `src/service/ProjectDocsService.ts` nur aus `.docs-cache`. Die Doku-Routen erzeugen alle Seiten über
-`generateStaticParams` und setzen `dynamicParams = false`, unbekannte Seiten ergeben 404. Zur Laufzeit wird
-`.docs-cache` nicht mehr gebraucht.
+Im Code liest `src/service/docs/DocsRepository.ts` (Instanz in `src/lib/docsRepository.ts`) nur aus `.docs-cache`.
+Weil das Layout der Seite `force-dynamic` ist, werden die Doku-Seiten nicht vorab als statisches HTML erzeugt, sondern
+zur Laufzeit aus dem `.docs-cache` im Image gelesen und im Speicher gehalten. `.docs-cache` gehört deshalb ins Image
+(`outputFileTracingIncludes` in `next.config.ts`). Am Prinzip ändert das nichts: Neue Doku kommt nur mit einem neuen
+Build, also einem Release. Unbekannte Seiten ergeben 404, ein Slug der anderen Sprache leitet auf die passende Seite
+um.
 
 ## 4. Darstellen
 
-- Markdown mit `marked` (wie schon im Projekt), Frontmatter mit `gray-matter`.
-- Überschriften-IDs wie auf GitHub (`github-slugger`), damit Anker aus dem Repo passen.
-- GitHub-Hinweise (`> [!NOTE]` …) als Callout-Komponente.
-- Syntax-Highlighting beim Build (`shiki`), Kopierknopf als kleine Client-Komponente.
-- HTML-Ausgabe säubern (`sanitize-html`), erlaubt sind nur die Elemente aus dem Vertrag plus `details`/`summary`.
+- Markdown mit `marked` (wie schon im Projekt), Frontmatter mit einem eigenen kleinen Parser
+  (`FrontmatterParser`, flache `key: value`-Paare – mehr erlaubt der Vertrag nicht).
+- Überschriften-IDs wie auf GitHub (eigener `HeadingSlugger`), damit Anker aus dem Repo passen.
+- GitHub-Hinweise (`> [!NOTE]` …) als Callout.
+- Syntax-Highlighting auf dem Server (`shiki`, helles und dunkles Theme), Kopierknopf als kleine Client-Komponente.
+- HTML im Markdown wird je Tag geprüft: erlaubt sind nur `details`/`summary`, alles andere wird als Text ausgegeben.
+- Renderer: `src/service/docs/DocsRenderer.ts`; dieselbe Darstellung nutzen auch die Artikel der Seite.
 - Links umschreiben: `x.md` → Doku-Seite in derselben Sprache, `../assets/y.webp` → `/docs-assets/<slug>/y.webp`.
 
 **Layout** (gleiches Designsystem wie die Seite, aber ruhig): kein Hero, keine farbigen Abschnittsbänder.
@@ -88,6 +94,7 @@ Komponenten unter `src/component/docs/`: `DocsLayout`, `DocsSidebar`, `DocsToc`,
 | Variable          | Standard | Zweck                                                      |
 |-------------------|----------|------------------------------------------------------------|
 | `DOCS_OFFLINE`    | leer     | `1` = Doku nicht laden, vorhandenen `.docs-cache` nutzen    |
+| `DOCS_LOCAL_ROOT` | leer     | Ordner mit lokalen Klonen der Repos statt GitHub-Archiv     |
 | `NPM_STATS_HOURS` | `24`     | Lebensdauer des Caches für npm-Downloadzahlen              |
 
 ## 8. Tests

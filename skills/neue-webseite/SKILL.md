@@ -142,7 +142,7 @@ src/
 **CI:** `.github/workflows/ci.yml` nutzt `DasRed/github-workflows/.github/workflows/node-docker.yml@v1` mit `dockhand-environment: chronos` und `container-name: <name>`, Secret `DOCKHAND_TOKEN`. Branches: Arbeit auf `develop`, Release auf `main`, Conventional Commits.
 
 **Doku und Portfolio (nur wenn in den Fragen 21 und 23–25 gewählt):**
-- Projekt-Doku anzeigen: nach `~/Web/ai/website-marco-starker.de/docs-integration.md` umsetzen (übersetzte Pfade, `scripts/fetch-docs.ts` als `prebuild`, `ProjectDocsService`, Doku-Layout, `.releaserc.json` mit `docs` → Patch, Concurrency in `ci.yml`), Projektdaten nach `project-schema.md`.
+- Projekt-Doku anzeigen: nach `~/Web/ai/website-marco-starker.de/docs-integration.md` umsetzen (übersetzte Pfade, `scripts/fetch-docs.ts` als `prebuild`, `DocsRepository`, Doku-Layout, semantic-release-Konfiguration im Schlüssel `"release"` der `package.json` mit `docs` → Patch, Concurrency in `ci.yml`), Projektdaten nach `project-schema.md`.
 - Doku im Repo: `docs/de` und `docs/en` nach `docs-contract.md` mit dem Seitensatz aus `docs-templates.md` anlegen; das README verlinkt auf die Doku-Seite; `docs.yml` nach `docs-release.md`. Token und Secret setzt Marco.
 - Öffentliches Repo: `public-repo-checklist.md` vor dem Umschalten abarbeiten und das Ergebnis im Bericht nennen. Umschalten macht Marco.
 - marco-starker.de: Eintrag (Daten, Übersetzungen, ggf. Fallstudie) als Vorschlag im Bericht liefern, nicht ins Repo marco-starker.de schreiben.

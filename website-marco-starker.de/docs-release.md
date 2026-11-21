@@ -21,10 +21,12 @@ Push auf main mit Änderung in docs/** (Projekt-Repo)
 
 - Nachricht: `docs(<slug>): sync documentation`, z. B. `docs(hetzner-mcp): sync documentation`.
 - Kein `fix:` – der Changelog soll zeigen, welche Doku sich geändert hat, nicht einen erfundenen Fehler.
-- semantic-release muss `docs` als Patch werten und im Changelog zeigen, z. B. in `.releaserc.json`:
+- semantic-release muss `docs` als Patch werten und im Changelog zeigen. Die Konfiguration steht im Schlüssel
+  `"release"` der `package.json` (keine eigene `.releaserc.json`, damit es nur eine Quelle gibt). Stand auf
+  marco-starker.de:
 
 ```json
-{
+"release": {
     "branches": ["main"],
     "plugins": [
         ["@semantic-release/commit-analyzer", {
@@ -36,16 +38,24 @@ Push auf main mit Änderung in docs/** (Projekt-Repo)
             "presetConfig": {"types": [
                 {"type": "feat", "section": "Features"},
                 {"type": "fix", "section": "Bug Fixes"},
+                {"type": "perf", "section": "Performance"},
                 {"type": "docs", "section": "Documentation"}
             ]}
-        }]
+        }],
+        ["@semantic-release/npm", {"npmPublish": false}],
+        ["@semantic-release/git", {
+            "assets":  ["package.json", "package-lock.json"],
+            "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }],
+        ["@semantic-release/github", {"failComment": false}]
     ]
 }
 ```
 
-Die übrigen Plugins (Changelog, Git, GitHub) bleiben wie im Projekt. Damit lösen auch reine `docs:`-Commits im Repo
-der Webseite selbst ein Release aus – gewollt, denn die Seite ist ihr Inhalt. `conventional-changelog-conventionalcommits`
-als devDependency nicht vergessen.
+Damit lösen auch reine `docs:`-Commits im Repo der Webseite selbst ein Release aus – gewollt, denn die Seite ist ihr
+Inhalt. `conventional-changelog-conventionalcommits` als devDependency nicht vergessen. Liegt in einem Projekt doch eine
+`.releaserc*`-Datei, gilt nur eine der beiden Quellen – dann die Konfiguration dort pflegen und den Schlüssel in der
+`package.json` entfernen.
 
 ## 3. Action `docs-check` (Repo github-workflows)
 
@@ -124,7 +134,7 @@ Zusätzlich lohnt `docs-check` auch in Pull Requests, damit Fehler vor dem Merge
 
 ```yaml
 concurrency:
-  group:              release
+  group:              ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 ```
 
