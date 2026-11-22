@@ -77,10 +77,18 @@ Komponenten unter `src/component/docs/`: `DocsLayout`, `DocsSidebar`, `DocsToc`,
 
 ## 5. SEO
 
-- Titel `<title> – <Projekt> | <Seitenname>`, Description aus dem Frontmatter.
-- Canonical und `alternates.languages` (hreflang) je Seitenpaar.
-- `sitemap.ts` listet alle Projekt- und Doku-Seiten beider Sprachen mit hreflang-Paaren.
+Es gilt der SEO-Standard aus dem Skill `neue-webseite` (Schritt 4 „SEO“). Für die Doku zusätzlich:
+
+- Titel `<title> – <Projekt> | <Seitenname>`, Description aus dem Frontmatter. Alles über `buildMetadata`.
+- Canonical und `alternates.languages` (hreflang) je Seitenpaar, verknüpft über den Dateinamen, dazu `x-default`
+  auf die Fassung in der Standardsprache. Gibt es eine Seite nur in einer Sprache, bricht der Build ohnehin ab.
+- `sitemap.ts` listet alle Projekt- und Doku-Seiten beider Sprachen mit hreflang-Paaren; `lastModified` ist das Datum
+  aus `.docs-cache/manifest.json`.
+- JSON-LD je Doku-Seite: `TechArticle` (`headline` = `title`, `description`, `inLanguage`, `dateModified` aus dem
+  Manifest, `isPartOf` → Projekt) und `BreadcrumbList` (Projekte → Projekt → Doku → Seite). Die Projektseite bekommt
+  `SoftwareApplication` bzw. `SoftwareSourceCode` mit `codeRepository`.
 - OG-Bild je Projekt (gemeinsames Bild mit Projektname reicht).
+- Unbekannte Doku-Seiten liefern 404, der Slug der anderen Sprache 301 auf die passende Seite.
 
 ## 6. npm-Downloadzahlen (Laufzeit)
 

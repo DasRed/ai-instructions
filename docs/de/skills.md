@@ -18,12 +18,41 @@ führt durch den Bau einer neuen Webseite, von der ersten Frage bis zum fertigen
 1. **Kontext sammeln:** Guidelines, Styleguides, Webseiten-Bausteine und ein Referenz-Repo lesen, Domains, freie Ports
    und Proxy-Hosts über die verbundenen Connectoren prüfen.
 2. **Rahmenbedingungen abfragen:** in mehreren Runden zu Projekt und Ziel, Design und Styleguide, Domain, Sprachen und
-   Rechtlichem, Technik, Betrieb und bei Kundenseiten zum Geschäftlichen. Der übliche Standard steht jeweils als
+   Rechtlichem, SEO, Technik, Betrieb und bei Kundenseiten zum Geschäftlichen. Der übliche Standard steht jeweils als
    empfohlene Antwort zuerst.
 3. **Steckbrief freigeben lassen:** Alle Entscheidungen als kurzer Projektsteckbrief. Vorher legt Claude keine Datei an.
 4. **Umsetzen:** Next.js mit TypeScript nach den [Code-Guidelines](code-guidelines.md), Design nach dem gewählten
-   [Styleguide](styleguides.md), Docker und CI, auf Wunsch Projekt-Doku nach den
+   [Styleguide](styleguides.md), SEO nach festem Standard, Docker und CI, auf Wunsch Projekt-Doku nach den
    [Webseiten-Bausteinen](website-building-blocks.md).
+
+### SEO
+
+In einer eigenen Runde fragt der Skill, wofür die Seite gefunden werden soll (Suchbegriffe, Region), welche
+strukturierten Daten passen, ob alte URLs aus einem Relaunch umgeleitet werden müssen und wie die Vorschau beim Teilen
+aussieht. Den Rest setzt er ohne Frage auf jeder Seite um:
+
+| Thema                | Standard                                                                                   |
+|----------------------|--------------------------------------------------------------------------------------------|
+| Kanonische Adresse   | eine Origin aus `SITE_URL`, Canonical auf jeder Seite, Neben-Domains per 301 mit Pfad      |
+| Sprachen             | hreflang auf allen Sprachfassungen plus `x-default`, Sprachweiche nur auf `/` per 307      |
+| Titel, Description   | je Seite eindeutig aus den Übersetzungen, eine `h1` je Seite                               |
+| Teilen               | Open Graph und Twitter Card, OG-Bild 1200×630                                              |
+| Strukturierte Daten  | JSON-LD serverseitig, z. B. `SportsClub`, `LocalBusiness`, `Event`, `BreadcrumbList`       |
+| `robots.txt`         | aus dem Code, nur mit `SITE_INDEXABLE=true` freigegeben, sonst alles gesperrt und `noindex` |
+| `sitemap.xml`        | aus der Routentabelle, nur indexierbare Seiten, mit hreflang-Paaren                        |
+| Rechtsseiten         | Impressum und Datenschutz `noindex, follow`, nicht in der Sitemap                          |
+| Fehler               | echte 404, alte URLs per 301 auf die passende neue Seite                                   |
+| Leistung             | Server Components, `next/image`, selbst gehostete Schriften, keine Layout-Shifts           |
+
+Vor dem Abschluss prüft der Skill `robots.txt`, Sitemap, Canonicals, hreflang, JSON-LD und Statuscodes am lokalen
+Build und lässt, falls verfügbar, Lighthouse laufen. Search Console, Rich-Results-Test und Unternehmensprofil kommen
+nach dem Go-live und nur mit ausdrücklichem OK.
+
+> [!TIP]
+> Mit `SITE_INDEXABLE` bleibt jede Instanz außer der Produktion automatisch aus dem Index. Im Compose der Produktion
+> steht deshalb `SITE_INDEXABLE=true`.
+
+### Grenzen
 
 Infrastruktur wie DNS, Proxy und Server richtet der Skill nicht selbst ein, er liefert nur Vorschläge. Commits und
 Pushes gibt es nur mit ausdrücklichem OK.
