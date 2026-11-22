@@ -1,6 +1,6 @@
 ---
 title: Styleguides
-description: Fifteen design styleguides for websites, from calm to playful, and how to hand them to an agent.
+description: Twenty design styleguides for websites, from calm to playful, and how to hand them to an agent.
 order: 30
 slug: styleguides
 section: Documents
@@ -12,7 +12,7 @@ enough for an agent to build a page from it without seeing a reference. The styl
 
 ## Overview
 
-The previews are sample pages built from the colours, fonts and components of each styleguide. Names and contents in them are made up.
+The previews are sample pages built from the colours, fonts and components of each styleguide. Names and contents in them are made up. Exception: Contour, Graphite, Noir, Plum and Sunset grew out of the design drafts for aspect42; their previews show those drafts in the aspect42 colours.
 
 ### Civic
 
@@ -44,6 +44,12 @@ Grid paper, deep blue blueprints with dimension lines, drawing sheets with title
 
 Newsprint with halftone dots, panels in thick ink, speech bubbles and sound effects. Suits: events, offers for kids and teens, product launches. File: [`comic.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/comic.md)
 
+### Contour
+
+![Contour preview: white page with a headline in a wide grotesque, the second line in a magenta-to-orange gradient, topographic contour lines in gradient colours around a round logo mark on the right](../assets/styleguide-contour.png)
+
+Everything in lines on white: topographic contour lines, 1 px gradient borders, outlined numerals, colour never as a surface. Suits: agencies, design studios, brands with an outline logo or a gradient. File: [`contour.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/contour.md)
+
 ### Cosmos
 
 ![Cosmos preview: dark starry sky with violet nebula, headline in a white-to-cyan gradient, planet with orbits and glass cards](../assets/styleguide-cosmos.png)
@@ -62,6 +68,12 @@ Red sky over purple night, golden rays, golden emblem and a name with stacked sh
 
 Magazine on warm paper: masthead, cover story with drop cap, fact box, rust red. Suits: authors, consultancies, culture, long reads. File: [`editorial.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/editorial.md)
 
+### Graphite
+
+![Graphite preview: anthracite page with a light headline and an orange second line, illustration in a frame with orange corner marks](../assets/styleguide-graphite.png)
+
+Logo anthracite as the page colour, outline wordmark as key visual, frames with orange corner marks, mono labels in brackets. Suits: development agencies, IT services, technical products. File: [`graphite.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/graphite.md)
+
 ### Hello World
 
 ![Hello World preview: a print code line with blue cursor, large serif headline below on near-white ground](../assets/styleguide-hello-world.png)
@@ -74,11 +86,23 @@ White paper, a line of code with a blinking cursor and its output below in a lar
 
 Lab notebook on grid paper, handwriting, highlighter, red circles, taped photo and sticky notes. Suits: maker portfolios, hackspaces, side projects. File: [`narf.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/narf.md)
 
+### Noir
+
+![Noir preview: deep black page with a magenta-orange field of light, centred Bodoni headline with an italic second line](../assets/styleguide-noir.png)
+
+Deep black, large Bodoni with an italic counter-voice, hairlines, generated fields of light in the brand colours. Suits: ambitious agencies and studios, architecture, culture. File: [`noir.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/noir.md)
+
 ### Philipp
 
 ![Philipp preview: red hero with code lines, white name and portrait tile, a row of tiles below with a red number and a dark status tile](../assets/styleguide-philipp.png)
 
 Red hero with lines of code, bold sans headline, portrait tile and a bento row below. Suits: freelancers, agencies, dev tools with a strong brand colour. File: [`philipp.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/philipp.md)
+
+### Plum
+
+![Plum preview: deep plum surface with a serif headline, second line in coral italics, coral button and illustration on a light card](../assets/styleguide-plum.png)
+
+Plum and blush alternating, coral as the action colour on dark, Newsreader with italic accents, arched portraits. Suits: coaching, consulting, agencies, culture. File: [`plum.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/plum.md)
 
 ### Retro 90s
 
@@ -91,6 +115,12 @@ Homepage from 1996: starfield, chrome lettering, planets as navigation, grey 3D 
 ![Studio preview: huge wide uppercase headline with an orange dot, numbered service rows with black rules below, one highlighted in black](../assets/styleguide-studio.png)
 
 Swiss grid: huge wide capitals, black rules, numbered rows, signal orange. Suits: agencies, studios, consultancies. File: [`studio.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/studio.md)
+
+### Sunset
+
+![Sunset preview: rounded panel with a grainy magenta-to-orange gradient, white headline and white buttons, tilted illustration on a light card](../assets/styleguide-sunset.png)
+
+Large grainy gradient panels at the start and end of every page, soft white cards in between. Suits: agencies, start-ups, apps, brands with a gradient. File: [`sunset.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/sunset.md)
 
 ### Superhero
 

@@ -15,7 +15,7 @@ Everything is Markdown, so people can read it and agents can use it directly.
 |-----------------------------|--------------------------------------------------------------------------|---------------------------------------------------|
 | `CodeGuidlines.md`          | Rules for TypeScript, Node projects, services, SDKs and translations    | [Code guidelines](code-guidelines.md)             |
 | `intellij-code-styles.xml`  | Code style scheme "Marco" for IntelliJ and WebStorm                      | [IntelliJ code style](intellij-code-style.md)     |
-| `styleguides/`              | 15 design styleguides for websites, from calm to playful                 | [Styleguides](styleguides.md)                     |
+| `styleguides/`              | 20 design styleguides for websites, from calm to playful                 | [Styleguides](styleguides.md)                     |
 | `website-marco-starker.de/` | Docs contract, project data and release flow for project documentation   | [Website building blocks](website-building-blocks.md) |
 | `skills/`                   | Claude skills that combine these rules into a workflow                   | [Skills](skills.md)                               |
 

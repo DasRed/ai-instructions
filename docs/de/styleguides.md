@@ -1,6 +1,6 @@
 ---
 title: Styleguides
-description: Fünfzehn Design-Styleguides für Webseiten, von ruhig bis verspielt, und wie du sie einem Agenten mitgibst.
+description: Zwanzig Design-Styleguides für Webseiten, von ruhig bis verspielt, und wie du sie einem Agenten mitgibst.
 order: 30
 slug: styleguides
 section: Dokumente
@@ -12,7 +12,7 @@ Prüfliste – so genau, dass ein Agent daraus eine Seite bauen kann, ohne ein V
 
 ## Übersicht
 
-Die Vorschaubilder sind Musterseiten mit den Farben, Schriften und Bausteinen des jeweiligen Styleguides. Namen und Inhalte darin sind erfunden.
+Die Vorschaubilder sind Musterseiten mit den Farben, Schriften und Bausteinen des jeweiligen Styleguides. Namen und Inhalte darin sind erfunden. Ausnahme: Contour, Graphite, Noir, Plum und Sunset sind aus den Designentwürfen für aspect42 entstanden; ihre Vorschauen zeigen diese Entwürfe in den aspect42-Farben.
 
 ### Civic
 
@@ -44,6 +44,12 @@ Rasterpapier, tiefblaue Blaupausen mit Maßlinien, Zeichnungsblätter mit Schrif
 
 Zeitungspapier mit Rasterpunkten, Panels mit dicker Tusche, Sprechblasen und Soundeffekte. Passt zu: Events, Kinder- und Jugendangebote, Produktlaunches. Datei: [`comic.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/comic.md)
 
+### Contour
+
+![Vorschau Contour: weiße Seite mit Headline in breiter Grotesk, zweite Zeile im Magenta-Orange-Verlauf, rechts topografische Höhenlinien in Verlaufsfarben um ein rundes Logo-Zeichen](../assets/styleguide-contour.png)
+
+Alles in Linien auf Weiß: topografische Höhenlinien, 1-px-Verlaufsränder, Konturziffern, Farbe nie als Fläche. Passt zu: Agenturen, Designstudios, Marken mit Outline-Logo oder Verlauf. Datei: [`contour.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/contour.md)
+
 ### Cosmos
 
 ![Vorschau Cosmos: dunkler Sternenhimmel mit violettem Nebel, Überschrift im Verlauf von Weiß nach Cyan, Planet mit Umlaufbahnen und Glaskarten](../assets/styleguide-cosmos.png)
@@ -62,6 +68,12 @@ Roter Himmel über Purpurnacht, goldene Strahlen, goldenes Emblem und Name mit g
 
 Zeitschrift auf warmem Papier: Zeitschriftenkopf, Titelgeschichte mit Initiale, Faktenkasten, Rostrot. Passt zu: Autoren, Beratungen, Kultur, lange Texte. Datei: [`editorial.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/editorial.md)
 
+### Graphite
+
+![Vorschau Graphite: anthrazitfarbene Seite mit heller Headline und orangefarbener zweiter Zeile, Illustration in einem Rahmen mit orangen Eckwinkeln](../assets/styleguide-graphite.png)
+
+Logo-Anthrazit als Seitengrund, Outline-Wortmarke als Schlüsselbild, Rahmen mit orangen Eckmarken, Mono-Labels in Klammern. Passt zu: Entwickler-Agenturen, IT-Dienstleister, technische Produkte. Datei: [`graphite.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/graphite.md)
+
 ### Hello World
 
 ![Vorschau Hello World: Codezeile print mit blauem Cursor, darunter eine große Serifen-Überschrift auf fast weißem Grund](../assets/styleguide-hello-world.png)
@@ -74,11 +86,23 @@ Weißes Papier, eine Codezeile mit blinkendem Cursor und darunter die Ausgabe al
 
 Laborbuch auf Karopapier, Handschrift, Textmarker, rote Kreise, eingeklebtes Foto und Klebezettel. Passt zu: Maker-Portfolios, Hackspaces, Side-Projects. Datei: [`narf.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/narf.md)
 
+### Noir
+
+![Vorschau Noir: tiefschwarze Seite mit magenta-orangem Lichtfeld, zentrierte Bodoni-Überschrift mit kursiver zweiter Zeile](../assets/styleguide-noir.png)
+
+Tiefes Schwarz, große Bodoni mit kursiver Gegenstimme, Haarlinien, generierte Lichtfelder in den Markenfarben. Passt zu: Agenturen und Studios mit Anspruch, Architektur, Kultur. Datei: [`noir.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/noir.md)
+
 ### Philipp
 
 ![Vorschau Philipp: roter Hero mit Code-Zeilen, weißem Namen und Porträt-Kachel, darunter eine Reihe Kacheln mit roter Zahl und dunkler Status-Kachel](../assets/styleguide-philipp.png)
 
 Roter Einstieg mit Code-Zeilen, kräftige Sans-Überschrift, Porträt-Kachel und Bento-Reihe darunter. Passt zu: Freelancer, Agenturen, Dev-Tools mit kräftiger Markenfarbe. Datei: [`philipp.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/philipp.md)
+
+### Plum
+
+![Vorschau Plum: tiefe Pflaumenfläche mit Serifen-Headline, zweite Zeile kursiv in Koralle, korallenfarbener Button und Illustration auf heller Karte](../assets/styleguide-plum.png)
+
+Pflaume und Blush im Wechsel, Koralle als Aktion auf dunkel, Newsreader mit kursiven Akzenten, Bogen-Porträts. Passt zu: Coaching, Beratung, Agenturen, Kultur. Datei: [`plum.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/plum.md)
 
 ### Retro 90s
 
@@ -91,6 +115,12 @@ Homepage von 1996: Sternenhimmel, Chrom-Lettern, Planeten als Navigation, graue 
 ![Vorschau Studio: riesige breite Versal-Überschrift mit orangem Punkt, darunter nummerierte Leistungszeilen mit schwarzen Linien, eine davon schwarz hervorgehoben](../assets/styleguide-studio.png)
 
 Schweizer Raster: riesige breite Versalien, schwarze Linien, nummerierte Zeilen, Signalorange. Passt zu: Agenturen, Studios, Beratungen. Datei: [`studio.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/studio.md)
+
+### Sunset
+
+![Vorschau Sunset: abgerundetes Panel mit körnigem Verlauf von Magenta nach Orange, weiße Headline und weiße Buttons, gedrehte Illustration auf heller Karte](../assets/styleguide-sunset.png)
+
+Große, körnige Verlaufs-Panels am Anfang und Ende jeder Seite, dazwischen weiche weiße Karten. Passt zu: Agenturen, Startups, Apps, Marken mit Verlauf. Datei: [`sunset.md`](https://github.com/DasRed/ai-instructions/blob/main/styleguides/sunset.md)
 
 ### Superhero
 

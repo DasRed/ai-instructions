@@ -15,7 +15,7 @@ Webseite ablegen. Alles ist Markdown, damit Menschen es lesen und Agenten es dir
 |------------------------------|-------------------------------------------------------------------------|---------------------------------------------------|
 | `CodeGuidlines.md`           | Regeln für TypeScript, Node-Projekte, Services, SDKs und Übersetzungen | [Code-Guidelines](code-guidelines.md)             |
 | `intellij-code-styles.xml`   | Code-Style-Schema „Marco“ für IntelliJ und WebStorm                     | [IntelliJ-Code-Style](intellij-code-style.md)     |
-| `styleguides/`               | 15 Design-Styleguides für Webseiten, von ruhig bis verspielt            | [Styleguides](styleguides.md)                     |
+| `styleguides/`               | 20 Design-Styleguides für Webseiten, von ruhig bis verspielt            | [Styleguides](styleguides.md)                     |
 | `website-marco-starker.de/`  | Doku-Vertrag, Projektdaten und Release-Ablauf für Projekt-Doku          | [Webseiten-Bausteine](website-building-blocks.md) |
 | `skills/`                    | Claude-Skills, die diese Regeln zu einem Ablauf verbinden               | [Skills](skills.md)                               |
 
