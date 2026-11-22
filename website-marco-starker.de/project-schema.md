@@ -30,7 +30,21 @@ export default interface ProjectInterface {
     slug: string;
     stack: string[];
     status: ProjectStatusEnum;
+    /** Kurze stumme Bildschirmaufnahme auf der Projektseite, sonst null. */
+    video: ProjectVideoInterface | null;
     year: string;
+}
+```
+
+```ts
+// src/model/ProjectVideoInterface.ts – Dateien unter public/videos/
+export default interface ProjectVideoInterface {
+    /** H.264 als Rückfall, '/videos/<slug>.mp4' */
+    mp4: string;
+    /** Standbild vor dem Abspielen, '/videos/<slug>-poster.webp' */
+    poster: string;
+    /** VP9, wird bevorzugt, '/videos/<slug>.webm' */
+    webm: string;
 }
 ```
 
@@ -101,6 +115,7 @@ enum ProjectStatusEnum {
     slug:     'hetzner-mcp',
     stack:    ['TypeScript', 'Node.js', 'MCP', 'Docker'],
     status:   ProjectStatusEnum.ACTIVE,
+    video:    null,
     year:     '2026',
 },
 ```
@@ -113,3 +128,6 @@ enum ProjectStatusEnum {
 4. Bei `docs`: Repo erfüllt `docs-contract.md`, hat `docs.yml` und das Secret `WEBSITE_RELEASE_TOKEN`
    (`docs-release.md`). Danach einmal ein Release der Webseite auslösen.
 5. Bild unter `public/images/projects/`.
+6. Video (optional) unter `public/videos/`: 1280 px breit, 30 fps, ohne Ton, unter einer Minute und wenige MB –
+   als MP4 (H.264, `+faststart`) und WebM (VP9) plus Poster als WebP. Die Projektseite spielt es stumm in Schleife
+   mit Bedienelementen ab.
