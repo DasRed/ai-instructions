@@ -41,7 +41,7 @@ Jede Seite beginnt mit YAML-Frontmatter:
 ```yaml
 ---
 title: Installation
-description: Docker-Image starten und mit Claude verbinden.
+description: Docker-Image starten, Zugangsdaten per Umgebungsvariable übergeben und den Server mit Claude Desktop, Claude Code oder einem anderen MCP-Client verbinden.
 order: 20
 slug: installation
 section: Einstieg
@@ -51,11 +51,14 @@ section: Einstieg
 | Feld          | Pflicht | Bedeutung                                                                                   |
 |---------------|---------|---------------------------------------------------------------------------------------------|
 | `title`       | ja      | Überschrift (H1) der Seite und Eintrag in der Navigation                                    |
-| `description` | ja      | Meta-Description und Teaser, ein Satz, höchstens 160 Zeichen                                |
+| `description` | ja      | Meta-Description und Teaser, ein bis zwei Sätze, **120–160 Zeichen** (siehe unten)          |
 | `order`       | ja      | Reihenfolge in der Navigation, in 10er-Schritten (`index.md` hat `0`)                       |
 | `slug`        | nein    | URL-Segment in dieser Sprache (z. B. `konfiguration` / `configuration`), Standard: Dateiname |
 | `section`     | nein    | Gruppenüberschrift in der Navigation, in der Sprache der Datei                              |
 
+- `description` sagt konkret, was die Seite zeigt oder was man danach kann, mit dem Begriff, unter dem man die Seite
+  suchen würde. Unter 120 Zeichen ist sie für Suchmaschinen zu knapp, über 160 wird sie abgeschnitten. Die Grenze gilt
+  für alle Sprachen; `docs-check` prüft sie im Projekt-Repo.
 - Kein `# H1` im Text, der Titel kommt aus `title`. Der Text beginnt mit `##`.
 - `slug` von `index.md` wird ignoriert, die Startseite hat keinen eigenen Pfadteil.
 
@@ -103,6 +106,7 @@ section: Einstieg
 - [ ] `docs/de/index.md` und `docs/en/index.md` vorhanden
 - [ ] jede Seite in beiden Sprachen, gleiche Dateinamen
 - [ ] Frontmatter mit `title`, `description`, `order` auf jeder Seite
+- [ ] `description` 120–160 Zeichen in allen Sprachen
 - [ ] kein `# H1` im Text
 - [ ] alle Codeblöcke mit Sprache
 - [ ] interne Links relativ auf `.md`, Repo-Links absolut

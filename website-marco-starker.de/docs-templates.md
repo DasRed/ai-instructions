@@ -56,7 +56,7 @@ Nur `index.md`: Idee, Vorgehen, Ergebnis (ehrlich, auch wenn es nicht geklappt h
 ```markdown
 ---
 title: Konfiguration
-description: Alle Umgebungsvariablen von <projekt> mit Standardwerten.
+description: Alle Umgebungsvariablen von <projekt> mit Standardwerten: Ports, Zugangsdaten, Protokollierung und was du für den Betrieb hinter einem Proxy einstellen musst.
 order: 20
 slug: konfiguration
 section: Einrichtung
@@ -79,7 +79,7 @@ Kurzer Einleitungssatz, was hier konfiguriert wird.
 ```markdown
 ---
 title: Configuration
-description: All environment variables of <project> with defaults.
+description: All environment variables of <project> with their defaults: ports, credentials, logging and what to set when you run it behind a reverse proxy.
 order: 20
 slug: configuration
 section: Setup

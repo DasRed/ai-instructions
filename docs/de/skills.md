@@ -34,11 +34,13 @@ aussieht. Den Rest setzt er ohne Frage auf jeder Seite um:
 | Thema                | Standard                                                                                   |
 |----------------------|--------------------------------------------------------------------------------------------|
 | Kanonische Adresse   | eine Origin aus `SITE_URL`, Canonical auf jeder Seite, Neben-Domains per 301 mit Pfad      |
-| Sprachen             | hreflang auf allen Sprachfassungen plus `x-default`, Sprachweiche nur auf `/` per 307      |
-| Titel, Description   | je Seite eindeutig aus den Übersetzungen, eine `h1` je Seite                               |
+| Sprachen             | hreflang auf allen Sprachfassungen plus `x-default` auf dieselbe Seite, Sprachweiche per 307 |
+| Viele Sprachen       | BCP-47-Codes (`zh-Hans`), `dir="rtl"`, englische URL-Segmente, Längen je Schrift           |
+| Titel, Description   | je Sprache eindeutig aus den Übersetzungen, eine `h1` je Seite                             |
 | Teilen               | Open Graph und Twitter Card, OG-Bild 1200×630                                              |
 | Strukturierte Daten  | JSON-LD serverseitig, z. B. `SportsClub`, `LocalBusiness`, `Event`, `BreadcrumbList`       |
 | `robots.txt`         | aus dem Code, nur mit `SITE_INDEXABLE=true` freigegeben, sonst alles gesperrt und `noindex` |
+| App-Seiten           | Smart App Banner, Store-Links, `MobileApplication` mit `offers` und `installUrl`           |
 | `sitemap.xml`        | aus der Routentabelle, nur indexierbare Seiten, mit hreflang-Paaren                        |
 | Rechtsseiten         | Impressum und Datenschutz `noindex, follow`, nicht in der Sitemap                          |
 | Fehler               | echte 404, alte URLs per 301 auf die passende neue Seite                                   |

@@ -26,7 +26,7 @@ follows them as well.
 ## The principle
 
 1. Every public repository stores its docs under `docs/de` and `docs/en`: identical file names in both languages,
-   front matter with `title`, `description` and `order`, GitHub Markdown without HTML.
+   front matter with `title`, `description` (120–160 characters) and `order`, GitHub Markdown without HTML.
 2. A push to `main` that changes `docs/**` starts the `docs.yml` workflow. It checks the docs and creates an empty
    commit `docs(<slug>): sync documentation` in the website repository.
 3. That commit triggers a patch release of the website via semantic-release. The build fetches the docs of all

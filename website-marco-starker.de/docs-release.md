@@ -62,7 +62,7 @@ Inhalt. `conventional-changelog-conventionalcommits` als devDependency nicht ver
 `.github/actions/docs-check/action.yml`, Node-basiert, prüft `docs/` nach `docs-contract.md`:
 
 - `docs/de/index.md` und `docs/en/index.md` vorhanden
-- jede Datei in beiden Sprachen, Frontmatter `title`, `description` (≤ 160 Zeichen), `order`
+- jede Datei in beiden Sprachen, Frontmatter `title`, `description` (120–160 Zeichen), `order`
 - kein `# H1` im Text, Codeblöcke mit Sprache, relative Links zeigen auf vorhandene Dateien
 - Bilder in `docs/assets/` mit Alt-Text und in der Größengrenze
 
@@ -71,7 +71,8 @@ Inhalt. `conventional-changelog-conventionalcommits` als devDependency nicht ver
 | `path` | `docs`   | Ordner der Doku   |
 
 Dieselbe Prüfung nutzt `scripts/fetch-docs.ts` der Webseite (gemeinsamer Code oder gleiche Regeln), damit beide
-Seiten dasselbe für gültig halten.
+Seiten dasselbe für gültig halten. Ausnahme: Die Länge der `description` prüft nur `docs-check` im Projekt-Repo, der
+Build der Webseite nicht.
 
 ## 4. Action `website-release` (Repo github-workflows)
 

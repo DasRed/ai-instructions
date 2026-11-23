@@ -25,7 +25,7 @@ gelten für jede Produktseite, die Doku aus Repos zeigen soll. Auch die Doku, di
 ## Das Prinzip
 
 1. Jedes öffentliche Repo legt seine Doku unter `docs/de` und `docs/en` ab: gleiche Dateinamen in beiden Sprachen,
-   Frontmatter mit `title`, `description` und `order`, GitHub-Markdown ohne HTML.
+   Frontmatter mit `title`, `description` (120–160 Zeichen) und `order`, GitHub-Markdown ohne HTML.
 2. Ein Push auf `main`, der `docs/**` ändert, startet den Workflow `docs.yml`. Er prüft die Doku und legt im Repo der
    Webseite einen leeren Commit `docs(<slug>): sync documentation` an.
 3. Dieser Commit löst per semantic-release ein Patch-Release der Webseite aus. Der Build holt die Doku aller Projekte

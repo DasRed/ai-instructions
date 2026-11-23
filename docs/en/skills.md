@@ -35,11 +35,13 @@ applies to every site without asking:
 | Topic              | Standard                                                                                |
 |--------------------|-----------------------------------------------------------------------------------------|
 | Canonical address  | one origin from `SITE_URL`, canonical on every page, secondary domains 301 with path    |
-| Languages          | hreflang on all language versions plus `x-default`, language switch only on `/` via 307 |
-| Title, description | unique per page from the translations, one `h1` per page                                |
+| Languages          | hreflang on all language versions plus `x-default` to the same page, language switch via 307 |
+| Many languages     | BCP 47 codes (`zh-Hans`), `dir="rtl"`, English URL segments, lengths per script        |
+| Title, description | unique per language from the translations, one `h1` per page                            |
 | Sharing            | Open Graph and Twitter Card, OG image 1200×630                                          |
 | Structured data    | JSON-LD rendered on the server, e.g. `SportsClub`, `LocalBusiness`, `Event`, `BreadcrumbList` |
 | `robots.txt`       | from code, open only with `SITE_INDEXABLE=true`, otherwise everything blocked and `noindex` |
+| App sites          | Smart App Banner, store links, `MobileApplication` with `offers` and `installUrl`       |
 | `sitemap.xml`      | from the route table, indexable pages only, with hreflang pairs                         |
 | Legal pages        | imprint and privacy policy `noindex, follow`, not in the sitemap                        |
 | Errors             | real 404, old URLs 301 to the matching new page                                         |
