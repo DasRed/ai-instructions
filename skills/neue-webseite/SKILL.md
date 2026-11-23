@@ -22,7 +22,7 @@ Bevor du fragst, schau nach, was schon bekannt ist, damit du nichts doppelt abfr
 - **Memory:** passende Projekt-/Kundendateien (z. B. Selbstständigkeit Webseiten, Glonntaler Cup, Copa, Annuva, aspect42).
 - **Code-Guidelines:** `CodeGuidlines.md` und `intellij-code-styles.xml`.
 - **Styleguides:** alle Dateien in `styleguides/` auflisten und von jedem Titel, Zweck und Kurzfassung lesen, damit du in der Design-Runde passende Styleguides vorschlagen kannst. Standard ist `civic.md` (dort zusätzlich Abschnitt 7 kennen).
-- **Webseiten-Bausteine:** `website-marco-starker.de/README.md` lesen (Doku-Vertrag, Projektdaten, Doku-Einbindung, öffentliche Repos). Welche Datei wann gebraucht wird, steht dort und bei den Fragen 25 und 27–29.
+- **Webseiten-Bausteine:** `website-marco-starker.de/README.md` lesen (Doku-Vertrag, Projektdaten, Doku-Einbindung, öffentliche Repos). Welche Datei wann gebraucht wird, steht dort und bei den Fragen 26 und 28–30.
 - **Referenz-Repo:** `DasRed/annuva-website` ist die aktuelle Vorlage für Struktur, Config, i18n, Rechtstexte, Dockerfile und CI. Sein `src/style/tokens.css` ist zugleich ein Umsetzungsbeispiel des Civic-Styleguides (Cremeflächen, Source Serif 4 + Atkinson Hyperlegible Next, eigener Petrol-Akzent).
 - **Domains:** IONOS-Connector `domains_list_domains`, ob die Domain schon im Konto ist.
 - **Server/Ports:** Dockhand-Connector `list_containers` auf chronos, um freie Ports (Schema **4xxxx** für Apps/Webseiten, 5xxxx für MCPs) und freie Containernamen zu finden.
@@ -81,40 +81,44 @@ Immer fest, ohne Frage: Schriften selbst gehostet (`@fontsource-variable/*`), ke
     - Produkt/App → `SoftwareApplication`/`MobileApplication` (Plattform, Kategorie, Preis/kostenlos)
     - Immer dazu: `WebSite` und bei Unterseiten `BreadcrumbList`.
     - Abfragen: Logo (quadratisch, mind. 112 px), Profile für `sameAs` (Instagram, Facebook, LinkedIn, GitHub, App-Stores), Öffnungszeiten/Termine; bei Apps die App-Store-ID und den Paketnamen bei Google Play.
-19. **Relaunch und Search Console:** Gibt es alte URLs, die per 301 auf neue Seiten zeigen müssen (Liste aus Schritt 1 vorschlagen)? Gibt es die Domain-Property `sc-domain:<domain>` schon? Falls nein: Marco legt sie an und verifiziert per DNS-TXT bei IONOS; der Service-Account aus `secrets/` wird als Nutzer eingetragen.
+19. **Relaunch:** Gibt es alte URLs, die per 301 auf neue Seiten zeigen müssen (Liste aus Schritt 1 vorschlagen)?
 20. **Teilen-Vorschau (Open Graph):** OG-Bild automatisch aus Logo + Seitentitel im Design der Seite erzeugen (Empfohlen) / ein festes Motiv je Sprache / je Seite ein eigenes Motiv (z. B. Turnierplakat).
+21. **Google Search Console:** Soll die Seite nach dem Go-live in der Google Search Console angelegt und eingerichtet werden?
+    - ja (Empfohlen bei öffentlichen Seiten, die gefunden werden sollen) → Claude richtet sie ein, sobald die Seite live ist und die SEO-Prüfung auf der Live-Seite ohne Fehler durchläuft (Schritt 4 „Google Search Console“). Abfragen, welches Google-Konto Inhaber wird (Standard: Marcos Konto; bei Kundenseiten ggf. zusätzlich das Konto des Kunden).
+    - gibt es schon → Property nennen (`sc-domain:<domain>`); Claude prüft nur, ob der Service-Account aus `secrets/` Zugriff hat, und reicht die Sitemap ein.
+    - nein
 
 Immer fest, ohne Frage (Details in Schritt 4 „SEO“): eine kanonische Adresse mit Canonical auf jeder Seite, hreflang mit `x-default` bei mehreren Sprachen, eigener Titel und eigene Description je Seite, Open Graph/Twitter Card, JSON-LD serverseitig, `robots.txt` und `sitemap.xml` aus dem Code, Vorschau-/Staging-Instanzen `noindex`, Impressum und Datenschutz `noindex, follow` und nicht in der Sitemap, echte 404, eine `h1` je Seite, Core Web Vitals im Blick.
 
 ### Runde 5 – Technik und Funktionen
-21. **Technik:**
+22. **Technik:**
     - Standard (Empfohlen): Next.js (App Router, `output: 'standalone'`), React 19, TypeScript 7, Tailwind 4, Node 26, ESM.
     - Alternative: WordPress (wenn der Kunde Inhalte selbst pflegen will), rein statisch. Auch dann gilt der SEO-Standard aus Schritt 4 (bei WordPress über ein schlankes SEO-Plugin, z. B. The SEO Framework).
-22. **Pflege:** Wer pflegt die Inhalte später, und wie oft ändern sie sich? (Kunde selbst → WordPress oder Markdown-Inhalte ansprechen.)
-23. **Funktionen:** Kontaktformular (Mailversand wie?), Galerie, Termine/Spielplan/Ergebnisse, Downloads, Suche, externe Einbindungen (YouTube, Maps, Instagram → nur mit Zwei-Klick-Lösung), Login/Admin.
-24. **Daten:** keine / SQLite / Postgres 18 auf chronos / externe API.
-25. **Projekt-Doku anzeigen:** Soll die Seite Doku aus Projekt-Repos zeigen (z. B. Doku zum eigenen Produkt oder zu Open-Source-Projekten)?
+23. **Pflege:** Wer pflegt die Inhalte später, und wie oft ändern sie sich? (Kunde selbst → WordPress oder Markdown-Inhalte ansprechen.)
+24. **Funktionen:** Kontaktformular (Mailversand wie?), Galerie, Termine/Spielplan/Ergebnisse, Downloads, Suche, externe Einbindungen (YouTube, Maps, Instagram → nur mit Zwei-Klick-Lösung), Login/Admin.
+25. **Daten:** keine / SQLite / Postgres 18 auf chronos / externe API.
+26. **Projekt-Doku anzeigen:** Soll die Seite Doku aus Projekt-Repos zeigen (z. B. Doku zum eigenen Produkt oder zu Open-Source-Projekten)?
     - nein (Empfohlen bei Kunden-, Vereins- und Eventseiten)
     - ja → `website-marco-starker.de/docs-contract.md`, `project-schema.md`, `docs-integration.md` und `docs-release.md` lesen. Im Steckbrief festhalten, welche Repos (Slug, Repo, Branch) eingebunden werden. Die Doku wird beim Build ins Image gebaut, Änderungen kommen per Release der Webseite.
 
 ### Runde 6 – Betrieb und Workflow
-26. **Server:** chronos (Empfohlen, alles Öffentliche) / eros. Port und Containername aus Schritt 1 vorschlagen.
-27. **Repo:** Name unter `DasRed`, privat/öffentlich. Öffentlich nur, wenn andere es nutzen können (Tools, Pakete, MCP-Server, Mods); Kunden-, Vereins- und Produktseiten bleiben privat. Bei öffentlich gilt `website-marco-starker.de/public-repo-checklist.md`.
-28. **Doku im Repo:** Soll das Repo Doku nach dem Doku-Vertrag bekommen (`docs/de`, `docs/en`)?
+27. **Server:** chronos (Empfohlen, alles Öffentliche) / eros. Port und Containername aus Schritt 1 vorschlagen.
+28. **Repo:** Name unter `DasRed`, privat/öffentlich. Öffentlich nur, wenn andere es nutzen können (Tools, Pakete, MCP-Server, Mods); Kunden-, Vereins- und Produktseiten bleiben privat. Bei öffentlich gilt `website-marco-starker.de/public-repo-checklist.md`.
+29. **Doku im Repo:** Soll das Repo Doku nach dem Doku-Vertrag bekommen (`docs/de`, `docs/en`)?
     - ja (Empfohlen bei öffentlichen Repos, die andere nutzen) → `docs-contract.md` und `docs-templates.md` lesen und den Seitensatz der passenden Projektart vorschlagen; dazu `docs.yml` und das Secret `WEBSITE_RELEASE_TOKEN` nach `docs-release.md`
     - nein (Empfohlen bei privaten Repos)
-29. **marco-starker.de:** Soll das Projekt auf marco-starker.de erscheinen (Open Source, Produkt, Referenz, Experiment)? Bei Kundenseiten nur mit Einverständnis des Kunden. Ja → Eintrag nach `website-marco-starker.de/project-schema.md` (Abschnitt 4) als Vorschlag vorbereiten; das Repo marco-starker.de nicht selbst ändern.
-30. **Git:** Darf Claude in diesem Repo committen/pushen? Standard: **nein**, nur mit ausdrücklichem OK.
-31. **Tests:** Unit-Tests gewünscht? (Bei einfachen Seiten oft nein; Lint + Typecheck immer.)
+30. **marco-starker.de:** Soll das Projekt auf marco-starker.de erscheinen (Open Source, Produkt, Referenz, Experiment)? Bei Kundenseiten nur mit Einverständnis des Kunden. Ja → Eintrag nach `website-marco-starker.de/project-schema.md` (Abschnitt 4) als Vorschlag vorbereiten; das Repo marco-starker.de nicht selbst ändern.
+31. **Git:** Darf Claude in diesem Repo committen/pushen? Standard: **nein**, nur mit ausdrücklichem OK.
+32. **Tests:** Unit-Tests gewünscht? (Bei einfachen Seiten oft nein; Lint + Typecheck immer.)
 
 ### Runde 7 – Geschäftliches (nur Kundenseiten)
-32. **Abrechnung** nach Marcos Modell: Ersteinrichtung (deckt 1. Jahr ab), Hosting 60 €/Jahr, Domains 1:1 zum IONOS-Preis, Stundensatz 80 €/h (Sonderfälle nachfragen). Direkt oder über Philipp?
-33. **Angebot:** Pakete/Angebot nötig? Termin oder Deadline?
-34. **Annuva:** Kunde/Projekt in Annuva anlegen?
+33. **Abrechnung** nach Marcos Modell: Ersteinrichtung (deckt 1. Jahr ab), Hosting 60 €/Jahr, Domains 1:1 zum IONOS-Preis, Stundensatz 80 €/h (Sonderfälle nachfragen). Direkt oder über Philipp?
+34. **Angebot:** Pakete/Angebot nötig? Termin oder Deadline?
+35. **Annuva:** Kunde/Projekt in Annuva anlegen?
 
 ## 3. Steckbrief freigeben lassen
 
-Fasse alles als kurzen **Projektsteckbrief** im Chat zusammen. Abschnitte: Projekt & Ziel, Design (Grundlage, Styleguide, Akzentfarbe, Schriften, Markenmomente, Hell/Dunkel, Bildsprache, Ton), Domain & Betrieb, SEO (Suchbegriffe, Region, JSON-LD-Typen und fehlende Angaben, Weiterleitungen aus dem Relaunch, OG-Bild, Search Console), Technik, Inhalte & Funktionen, Doku & Portfolio (Projekt-Doku, Doku im Repo, öffentlich/privat, marco-starker.de), Rechtliches, Workflow, ggf. Geschäftliches. Markiere klar, was gesetzt (Standard) und was entschieden wurde, und liste offene Punkte.
+Fasse alles als kurzen **Projektsteckbrief** im Chat zusammen. Abschnitte: Projekt & Ziel, Design (Grundlage, Styleguide, Akzentfarbe, Schriften, Markenmomente, Hell/Dunkel, Bildsprache, Ton), Domain & Betrieb, SEO (Suchbegriffe, Region, JSON-LD-Typen und fehlende Angaben, Weiterleitungen aus dem Relaunch, OG-Bild, Search Console ja/nein mit Inhaber-Konto), Technik, Inhalte & Funktionen, Doku & Portfolio (Projekt-Doku, Doku im Repo, öffentlich/privat, marco-starker.de), Rechtliches, Workflow, ggf. Geschäftliches. Markiere klar, was gesetzt (Standard) und was entschieden wurde, und liste offene Punkte.
 
 Dann **auf Freigabe warten**. Erst nach „ok“ / „los“ geht es weiter. Der Steckbrief wandert später als Kontext in `CLAUDE.md` und `README.md` des Repos.
 
@@ -181,7 +185,7 @@ src/
 
 **CI:** `.github/workflows/ci.yml` nutzt `DasRed/github-workflows/.github/workflows/node-docker.yml@v1` mit `dockhand-environment: chronos` und `container-name: <name>`, Secret `DOCKHAND_TOKEN`. Branches: Arbeit auf `develop`, Release auf `main`, Conventional Commits.
 
-**Doku und Portfolio (nur wenn in den Fragen 25 und 27–29 gewählt):**
+**Doku und Portfolio (nur wenn in den Fragen 26 und 28–30 gewählt):**
 - Projekt-Doku anzeigen: nach `website-marco-starker.de/docs-integration.md` umsetzen (übersetzte Pfade, `scripts/fetch-docs.ts` als `prebuild`, `DocsRepository`, Doku-Layout, semantic-release-Konfiguration im Schlüssel `"release"` der `package.json` mit `docs` → Patch, Concurrency in `ci.yml`), Projektdaten nach `project-schema.md`.
 - Doku im Repo: `docs/de` und `docs/en` nach `docs-contract.md` mit dem Seitensatz aus `docs-templates.md` anlegen; das README verlinkt auf die Doku-Seite; `docs.yml` nach `docs-release.md`. Token und Secret setzt Marco.
 - Öffentliches Repo: `public-repo-checklist.md` vor dem Umschalten abarbeiten und das Ergebnis im Bericht nennen. Umschalten macht Marco.
@@ -198,8 +202,16 @@ src/
 - Ein unbekannter Pfad liefert 404; alte URLs aus Frage 19 liefern 301/308 auf die richtige Seite; `/` leitet mit 307 auf die Sprache.
 - Lighthouse, falls verfügbar (`npx lighthouse <url> --only-categories=seo,accessibility,performance,best-practices`): SEO und Barrierefreiheit ≥ 95, Performance ≥ 90 (mobil).
 
+**Google Search Console (nur wenn in Frage 21 gewünscht):**
+- **Wann:** erst, wenn die Seite unter der kanonischen Adresse in Produktion läuft (`SITE_INDEXABLE=true`) **und** die SEO-Prüfung oben auf der **Live-Seite** ohne Fehler durchläuft: `robots.txt` offen, Sitemap und alle URLs darin 200, Canonical, hreflang, Titel, Description, `h1` und JSON-LD in Ordnung. Ist etwas offen, zuerst beheben bzw. Marco melden; die Search Console kommt danach. So startet Google mit einer sauberen Seite statt mit Fehlern im Bericht.
+- **Property:** immer als Domain-Property `sc-domain:<domain>` (deckt https/http, www und Subdomains ab), nicht als URL-Präfix.
+- **Verifizieren per DNS-TXT:** Token über die Site Verification API holen (`site.type: INET_DOMAIN`, `verificationMethod: DNS_TXT`). Liegt die Domain bei IONOS, setzt Claude den TXT-Eintrag an der Wurzel der Domain über den IONOS-Connector; das Ja in Frage 21 ist der Auftrag dafür, aber nur für diesen einen TXT-Eintrag, sonst wird an der Zone nichts geändert. Liegt die Domain woanders, den TXT-Wert an Marco bzw. den Kunden geben. Nach der DNS-Verteilung (`dig TXT <domain>`) verifizieren. Der TXT-Eintrag bleibt dauerhaft stehen, sonst verliert die Property die Verifizierung.
+- **Einrichten:** Property in der Search Console hinzufügen; das Konto aus Frage 21 als Inhaber eintragen, der Service-Account aus `secrets/` bleibt als Nutzer für Abfragen.
+- **Sitemap und Prüfung:** `node tools/search-console.mjs submit-sitemap sc-domain:<domain> <SITE_URL>/sitemap.xml`, danach `sitemaps sc-domain:<domain>` (Status, keine Fehler) und `inspect` für die Startseite jeder Sprache.
+- **Werkzeug:** `tools/search-console.mjs` holt Tokens mit dem Scope `webmasters`. Für die Verifizierung braucht es zusätzlich den Scope `siteverification` und die aktivierte Site Verification API im Google-Cloud-Projekt des Service-Accounts. Fehlt das, die Verifizierung nicht anders erzwingen, sondern Marco melden.
+- **Bericht:** Property, Inhaber, eingereichte Sitemap mit Status, Ergebnis der Inspektion. Bei Relaunch nach einigen Tagen mit `query … page` prüfen, ob die alten URLs abgelöst werden.
+
 **Nach dem Go-live – macht Marco oder Claude nur mit ausdrücklichem OK:**
-- Search Console: Domain-Property `sc-domain:<domain>` (DNS-TXT bei IONOS), Sitemap einreichen mit `node tools/search-console.mjs submit-sitemap sc-domain:<domain> <SITE_URL>/sitemap.xml`, Startseite mit `inspect` prüfen. Bei Relaunch nach einigen Tagen `query … page` gegen die alten URLs prüfen.
 - JSON-LD im Rich-Results-Test von Google und auf validator.schema.org prüfen.
 - Lokale Seiten: Google-Unternehmensprofil mit identischen Angaben anlegen oder aktualisieren (Kunde oder Marco). Optional Bing Webmaster Tools (Import aus der Search Console).
 

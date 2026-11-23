@@ -48,8 +48,12 @@ applies to every site without asking:
 | Performance        | Server Components, `next/image`, self-hosted fonts, no layout shifts                    |
 
 Before finishing, the skill checks `robots.txt`, sitemap, canonicals, hreflang, JSON-LD and status codes against the
-local build and runs Lighthouse if available. Search Console, the Rich Results Test and the business profile come after
-go-live and only with explicit approval.
+local build and runs Lighthouse if available.
+
+The skill asks whether the site should go into Google Search Console. If yes, it creates a domain property after
+go-live, verifies it via DNS TXT, adds the owner and submits the sitemap. That only happens once the same SEO check
+passes without errors on the live site. The Rich Results Test and the business profile come afterwards and only with
+explicit approval.
 
 > [!TIP]
 > With `SITE_INDEXABLE`, every instance except production stays out of the index automatically. That is why the

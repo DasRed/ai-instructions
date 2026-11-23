@@ -47,8 +47,12 @@ aussieht. Den Rest setzt er ohne Frage auf jeder Seite um:
 | Leistung             | Server Components, `next/image`, selbst gehostete Schriften, keine Layout-Shifts           |
 
 Vor dem Abschluss prüft der Skill `robots.txt`, Sitemap, Canonicals, hreflang, JSON-LD und Statuscodes am lokalen
-Build und lässt, falls verfügbar, Lighthouse laufen. Search Console, Rich-Results-Test und Unternehmensprofil kommen
-nach dem Go-live und nur mit ausdrücklichem OK.
+Build und lässt, falls verfügbar, Lighthouse laufen.
+
+Ob die Seite in die Google Search Console kommt, fragt der Skill ab. Bei Ja legt er sie nach dem Go-live als
+Domain-Property an, verifiziert sie per DNS-TXT, trägt den Inhaber ein und reicht die Sitemap ein. Das passiert erst,
+wenn dieselbe SEO-Prüfung auch auf der Live-Seite ohne Fehler durchläuft. Rich-Results-Test und Unternehmensprofil
+kommen danach und nur mit ausdrücklichem OK.
 
 > [!TIP]
 > Mit `SITE_INDEXABLE` bleibt jede Instanz außer der Produktion automatisch aus dem Index. Im Compose der Produktion
