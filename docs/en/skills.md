@@ -1,6 +1,6 @@
 ---
 title: Skills
-description: Claude skills that combine guidelines, styleguides and website building blocks into a fixed workflow, and how to install them.
+description: Claude skills for new websites and new MCP servers that combine guidelines, styleguides and website building blocks into a fixed workflow.
 order: 50
 slug: skills
 section: Documents
@@ -68,13 +68,51 @@ pushes happen only with explicit approval.
 > The skill is tailored to my environment: my folders, servers, connectors and prices. For your own projects, use it
 > as a template and replace those parts.
 
+## new-mcp
+
+[`skills/new-mcp/SKILL.md`](https://github.com/DasRed/ai-instructions/blob/main/skills/new-mcp/SKILL.md) guides
+through building a new MCP server, from the first conversation to the entry in the MCP Registry. It is modelled on my
+four servers hetzner-mcp, nginx-proxy-manager-mcp, discord-mcp and backrest-mcp. The skill is written in German.
+
+1. **Gather context:** read guidelines, website building blocks and the reference repository backrest-mcp; check the
+   API of the service (what it really offers, whether it returns secrets); look for existing MCP servers as a model;
+   find free ports and hosts in the MCP stack.
+2. **Ask about the requirements:** in four rounds on service and scope, access and security, operations and
+   publishing. The usual default comes first as the recommended answer.
+3. **Get the brief approved:** names, tools, security, operations and publishing as a short brief. Claude creates no
+   files before that.
+4. **Build:** Node.js and TypeScript following the [code guidelines](code-guidelines.md), Dockerfile, CI,
+   `server.json` for the registry, docs in two languages following the
+   [website building blocks](website-building-blocks.md) and, on request, the project entry on marco-starker.de.
+5. **Check and hand over:** tests, build, Docker, docs check and a list of the steps I do myself.
+
+### Standard of an MCP server
+
+| Topic          | Standard                                                                                        |
+|----------------|-------------------------------------------------------------------------------------------------|
+| Transport      | Streamable HTTP, stateless: one MCP instance per `POST`, `GET` and `DELETE` return `405`        |
+| Permissions    | read-only by default, allow and deny lists with `*`, tool hints `readOnlyHint` and `destructiveHint` |
+| Access         | optional bearer token compared in constant time, secrets from the API masked                    |
+| Configuration  | environment variables only, prefixed `<SERVICE>_MCP_`, all documented in `.env.example`          |
+| Container      | `node:26-alpine`, no root, no state, health check on `/healthz`                                  |
+| Release        | semantic-release sets the version in `package.json` and `server.json`, image to GHCR            |
+| Registry       | entry `io.github.DasRed/<slug>` after every release via GitHub OIDC, no secret                  |
+| Docs           | `docs/de` and `docs/en` with overview, installation, configuration, Claude, other clients, tools, security |
+
+### Limits
+
+Once I have created the repository on GitHub, the skill can use `gh` to set the secrets for deploy, Home Assistant and
+docs release from `secrets/.env` (without showing the values) and the About with description, docs link and topics. I
+set up image visibility, proxy host, stack and connector myself; the skill delivers a list and proposals for that, such
+as the compose service. Commits and pushes happen only with explicit approval.
+
 ## Install
 
-In Claude Code, store the skill as a personal skill:
+In Claude Code, store each skill as a personal skill, here using `new-mcp` as an example:
 
 ```bash
-mkdir -p ~/.claude/skills/neue-webseite
-cp ./skills/neue-webseite/SKILL.md ~/.claude/skills/neue-webseite/SKILL.md
+mkdir -p ~/.claude/skills/new-mcp
+cp ./skills/new-mcp/SKILL.md ~/.claude/skills/new-mcp/SKILL.md
 ```
 
 In the Claude app, upload the `SKILL.md` as a custom skill. The file in the repository stays the source: if you change
@@ -82,8 +120,14 @@ it, update the copy in Claude afterwards.
 
 ## Invoke
 
-The skill starts when you tell Claude you want to build a new website, for example:
+A skill starts when your request matches its description. `neue-webseite` when you want to build a new website:
 
 ```text
 I want to build a new website for the tennis club.
+```
+
+`new-mcp` when you want to build a new MCP server:
+
+```text
+I want to build an MCP server for Paperless-ngx.
 ```

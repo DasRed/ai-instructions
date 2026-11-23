@@ -11,6 +11,7 @@ damit sich alle Projekte gleich anfühlen. Seiten, die für ein Projekt nichts h
 | `installation.md`   | 10    | Installation / Installation                  | Docker-Image (GHCR), Compose-Beispiel, Ports                   |
 | `configuration.md`  | 20    | Konfiguration / Configuration                | Umgebungsvariablen als Tabelle, Zugangsdaten beschaffen        |
 | `claude.md`         | 30    | In Claude einbinden / Connect to Claude      | Custom Connector, URL, Authentifizierung, Test                 |
+| `clients.md`        | 35    | Andere MCP-Clients / Other MCP clients       | JSON-Eintrag per HTTP, mcp-remote für stdio-Clients, Test      |
 | `tools.md`          | 40    | Tools / Tools                                | Referenz aller Tools: Name, Zweck, Parameter, Beispiel         |
 | `security.md`       | 50    | Sicherheit / Security                        | Rechte, Token-Umfang, was der Server darf und was nicht        |
 
