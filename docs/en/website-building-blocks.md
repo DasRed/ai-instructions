@@ -60,7 +60,7 @@ docs/
 
 ## Usage
 
-New repositories get their docs most easily through the [skill "new-website"](skills.md) or with a direct request
+New repositories get their docs most easily through the [skill "new-website"](new-website.md) or with a direct request
 to the agent:
 
 ```markdown
