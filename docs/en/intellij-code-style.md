@@ -1,6 +1,6 @@
 ---
 title: IntelliJ code style
-description: Import the code style scheme "Marco" into IntelliJ IDEA and WebStorm, and what it defines.
+description: Import the code style scheme "Marco" into IntelliJ IDEA and WebStorm, and what it sets for indentation, quotes, braces and alignment.
 order: 20
 slug: intellij-code-style
 section: Documents

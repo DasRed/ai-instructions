@@ -1,6 +1,6 @@
 ---
 title: Website building blocks
-description: Docs contract, page sets, project data and release flow that let project repositories bring their docs onto a website.
+description: Docs contract, page sets, project data and release flow that let project repositories bring their documentation onto a website like this one.
 order: 40
 slug: website-building-blocks
 section: Documents

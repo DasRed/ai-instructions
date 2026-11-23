@@ -1,6 +1,6 @@
 ---
 title: IntelliJ-Code-Style
-description: Das Code-Style-Schema „Marco“ für IntelliJ IDEA und WebStorm importieren und was es festlegt.
+description: Das Code-Style-Schema „Marco“ in IntelliJ IDEA und WebStorm importieren und was es für Einrückung, Anführungszeichen, Klammern und Ausrichtung festlegt.
 order: 20
 slug: intellij-code-style
 section: Dokumente

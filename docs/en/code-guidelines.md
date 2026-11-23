@@ -1,6 +1,6 @@
 ---
 title: Code guidelines
-description: What CodeGuidlines.md defines for TypeScript, Node projects, Fastify services, SDKs and translations.
+description: What CodeGuidlines.md defines for TypeScript, Node projects, Fastify services, SDKs and translations, with the key rules and short examples.
 order: 10
 slug: code-guidelines
 section: Documents

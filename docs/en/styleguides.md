@@ -1,6 +1,6 @@
 ---
 title: Styleguides
-description: Twenty design styleguides for websites, from calm to playful, and how to hand them to an agent.
+description: Twenty design styleguides for websites, from calm to playful, with preview images, how each one is structured and how to hand them to an agent.
 order: 30
 slug: styleguides
 section: Documents

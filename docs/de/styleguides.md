@@ -1,6 +1,6 @@
 ---
 title: Styleguides
-description: Zwanzig Design-Styleguides für Webseiten, von ruhig bis verspielt, und wie du sie einem Agenten mitgibst.
+description: Zwanzig Design-Styleguides für Webseiten, von ruhig bis verspielt, mit Vorschaubildern, ihrem Aufbau und wie du sie einem Agenten mitgibst.
 order: 30
 slug: styleguides
 section: Dokumente

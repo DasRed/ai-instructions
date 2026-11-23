@@ -1,6 +1,6 @@
 ---
 title: Code-Guidelines
-description: Was CodeGuidlines.md für TypeScript, Node-Projekte, Fastify-Services, SDKs und Übersetzungen festlegt.
+description: Was CodeGuidlines.md für TypeScript, Node-Projekte, Fastify-Services, SDKs und Übersetzungen festlegt, mit den wichtigsten Regeln und Beispielen.
 order: 10
 slug: code-guidelines
 section: Dokumente
