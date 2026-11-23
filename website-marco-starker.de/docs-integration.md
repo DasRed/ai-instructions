@@ -77,7 +77,7 @@ Komponenten unter `src/component/docs/`: `DocsLayout`, `DocsSidebar`, `DocsToc`,
 
 ## 5. SEO
 
-Es gilt der SEO-Standard aus dem Skill `neue-webseite` (Schritt 4 „SEO“). Für die Doku zusätzlich:
+Es gilt der SEO-Standard aus dem Skill `new-website` (Schritt 4 „SEO“). Für die Doku zusätzlich:
 
 - Titel `<title> – <Projekt> | <Seitenname>`, Description aus dem Frontmatter. Alles über `buildMetadata`.
 - Canonical und `alternates.languages` (hreflang) je Seitenpaar, verknüpft über den Dateinamen, dazu `x-default`

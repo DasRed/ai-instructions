@@ -59,7 +59,7 @@ docs/
 
 ## Verwenden
 
-Neue Repos bekommen die Doku am einfachsten über den [Skill „neue-webseite“](skills.md) oder mit einem direkten
+Neue Repos bekommen die Doku am einfachsten über den [Skill „new-website“](skills.md) oder mit einem direkten
 Auftrag an den Agenten:
 
 ```markdown

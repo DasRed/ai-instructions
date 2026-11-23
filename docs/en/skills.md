@@ -10,10 +10,10 @@ The folder [`skills/`](https://github.com/DasRed/ai-instructions/tree/main/skill
 a `SKILL.md` with a name, a description and instructions. Claude loads it when a request matches the description and
 then works through the steps.
 
-## neue-webseite
+## new-website
 
-[`skills/neue-webseite/SKILL.md`](https://github.com/DasRed/ai-instructions/blob/main/skills/neue-webseite/SKILL.md)
-("new website") guides through building a new website, from the first question to the finished repository. The skill
+[`skills/new-website/SKILL.md`](https://github.com/DasRed/ai-instructions/blob/main/skills/new-website/SKILL.md)
+guides through building a new website, from the first question to the finished repository. The skill
 is written in German.
 
 1. **Gather context:** read guidelines, styleguides, website building blocks and a reference repository; check
@@ -61,7 +61,9 @@ explicit approval.
 
 ### Limits
 
-The skill does not set up infrastructure like DNS, proxy and servers itself; it only delivers proposals. Commits and
+The skill does not set up infrastructure like DNS, proxy and servers itself; it only delivers proposals. Once the
+repository exists on GitHub, it can use `gh` to set the secrets for deploy, Home Assistant and docs release from
+`secrets/.env` (without showing the values) and the About with description, site address and topics. Commits and
 pushes happen only with explicit approval.
 
 > [!NOTE]
@@ -120,7 +122,7 @@ it, update the copy in Claude afterwards.
 
 ## Invoke
 
-A skill starts when your request matches its description. `neue-webseite` when you want to build a new website:
+A skill starts when your request matches its description. `new-website` when you want to build a new website:
 
 ```text
 I want to build a new website for the tennis club.

@@ -1,11 +1,11 @@
 ---
-name: neue-webseite
+name: new-website
 description: Wenn Marco eine neue Webseite bauen will (Kunden-, Vereins-, Turnier-, Produkt- oder eigene Seite): Rahmenbedingungen abfragen, Steckbrief abstimmen, nach seinem Standard umsetzen.
 ---
 
 # Neue Webseite für Marco
 
-> Quelle dieses Skills: `skills/neue-webseite/SKILL.md` im Repo `DasRed/ai-instructions` (versioniert). Die Kopie im
+> Quelle dieses Skills: `skills/new-website/SKILL.md` im Repo `DasRed/ai-instructions` (versioniert). Die Kopie im
 > Claude-Konto wird bei Änderungen daraus synchronisiert. Alle Pfade ohne Repo-Angabe gehen vom Root dieses Repos aus
 > (lokaler Clone oder GitHub).
 
@@ -28,6 +28,10 @@ Bevor du fragst, schau nach, was schon bekannt ist, damit du nichts doppelt abfr
 - **Server/Ports:** Dockhand-Connector `list_containers` auf chronos, um freie Ports (Schema **4xxxx** für Apps/Webseiten, 5xxxx für MCPs) und freie Containernamen zu finden.
 - **Proxy:** NPM-Connector `list_proxy_hosts`, ob es den Host schon gibt.
 - **Bestehende Seite (Relaunch):** Gibt es unter der Domain schon eine Seite, deren URLs, Titel, Descriptions und Sitemap aufnehmen (öffentlich abrufen). Ist die Domain in der Search Console, mit `node tools/search-console.mjs sites`, `sitemaps <site>` und `query <site> <start> <ende> page` die Seiten mit Klicks und Impressionen holen. Das ist die Grundlage für die 301-Weiterleitungen (Frage 19).
+- **Secrets:** `secrets/.env` (lokal `~/Web/ai/secrets/.env`, von Git ignoriert) enthält `DOCKHAND_HOST`,
+  `DOCKHAND_TOKEN`, `HOMEASSISTANT_WEBHOOK_URL` und `WEBSITE_RELEASE_TOKEN` für die Secrets des Repos. Nur prüfen, ob die
+  Namen da sind; Werte nie anzeigen.
+- **GitHub:** ob `gh` verfügbar und angemeldet ist (`gh auth status`).
 - Gibt es das Repo `DasRed/<name>` schon, erst das lesen.
 
 ## 2. Rahmenbedingungen abfragen
@@ -109,12 +113,15 @@ Immer fest, ohne Frage (Details in Schritt 4 „SEO“): eine kanonische Adresse
     - nein (Empfohlen bei privaten Repos)
 30. **marco-starker.de:** Soll das Projekt auf marco-starker.de erscheinen (Open Source, Produkt, Referenz, Experiment)? Bei Kundenseiten nur mit Einverständnis des Kunden. Ja → Eintrag nach `website-marco-starker.de/project-schema.md` (Abschnitt 4) als Vorschlag vorbereiten; das Repo marco-starker.de nicht selbst ändern.
 31. **Git:** Darf Claude in diesem Repo committen/pushen? Standard: **nein**, nur mit ausdrücklichem OK.
-32. **Tests:** Unit-Tests gewünscht? (Bei einfachen Seiten oft nein; Lint + Typecheck immer.)
+32. **GitHub-Repo einrichten:** Sobald `DasRed/<name>` auf GitHub existiert, setzt Claude per `gh` die Secrets aus
+    `secrets/.env` und das About (Beschreibung, Website, Topics) (Empfohlen) / Marco macht es selbst, Claude liefert die
+    Befehle. Das Ja ist der Auftrag für genau diese zwei Schritte, nicht für andere Änderungen am Repo.
+33. **Tests:** Unit-Tests gewünscht? (Bei einfachen Seiten oft nein; Lint + Typecheck immer.)
 
 ### Runde 7 – Geschäftliches (nur Kundenseiten)
-33. **Abrechnung** nach Marcos Modell: Ersteinrichtung (deckt 1. Jahr ab), Hosting 60 €/Jahr, Domains 1:1 zum IONOS-Preis, Stundensatz 80 €/h (Sonderfälle nachfragen). Direkt oder über Philipp?
-34. **Angebot:** Pakete/Angebot nötig? Termin oder Deadline?
-35. **Annuva:** Kunde/Projekt in Annuva anlegen?
+34. **Abrechnung** nach Marcos Modell: Ersteinrichtung (deckt 1. Jahr ab), Hosting 60 €/Jahr, Domains 1:1 zum IONOS-Preis, Stundensatz 80 €/h (Sonderfälle nachfragen). Direkt oder über Philipp?
+35. **Angebot:** Pakete/Angebot nötig? Termin oder Deadline?
+36. **Annuva:** Kunde/Projekt in Annuva anlegen?
 
 ## 3. Steckbrief freigeben lassen
 
@@ -183,11 +190,39 @@ src/
 
 **Docker:** Einstufiges `node:26-alpine`-Image, kopiert `.next/standalone`, `.next/static`, `public` und zuletzt `package.json`; `USER node`; `EXPOSE <port>`; HEALTHCHECK per `wget` auf `/api/health`.
 
-**CI:** `.github/workflows/ci.yml` nutzt `DasRed/github-workflows/.github/workflows/node-docker.yml@v1` mit `dockhand-environment: chronos` und `container-name: <name>`, Secret `DOCKHAND_TOKEN`. Branches: Arbeit auf `develop`, Release auf `main`, Conventional Commits.
+**CI:** `.github/workflows/ci.yml` nutzt `DasRed/github-workflows/.github/workflows/node-docker.yml@v1` mit `environment: chronos` und `container-name: <name>` sowie den Secrets `dockhand-host`, `dockhand-token` und `homeassistant-webhook-url` (aus `DOCKHAND_HOST`, `DOCKHAND_TOKEN`, `HOMEASSISTANT_WEBHOOK_URL`, wie in annuva-website). Branches: Arbeit auf `develop`, Release auf `main`, Conventional Commits.
+
+**GitHub-Repo: Secrets und About (nur wenn in Frage 32 gewählt):**
+- Erst, wenn das Repo `DasRed/<name>` auf GitHub existiert und `gh` als DasRed angemeldet ist. Ohne `gh` die Befehle mit eingesetztem Namen an Marco geben.
+- **Secrets:** alle vier aus `secrets/.env` setzen (`WEBSITE_RELEASE_TOKEN` braucht nur ein Repo mit `docs.yml`, schadet aber nicht). Die Werte kommen nur per Pipe zu `gh`; nie ausgeben, in Dateien schreiben, als Argument übergeben oder in den Chat übernehmen. Fehlt ein Name in `secrets/.env`, das im Bericht nennen statt einen Wert zu raten.
+
+```bash
+repo=DasRed/<name>
+for name in DOCKHAND_HOST DOCKHAND_TOKEN HOMEASSISTANT_WEBHOOK_URL WEBSITE_RELEASE_TOKEN; do
+    value=$(grep -E "^${name}=" ~/Web/ai/secrets/.env | cut -d= -f2- | tr -d '\r\n')
+    if [ -z "$value" ]; then
+        echo "$name fehlt in secrets/.env"
+        continue
+    fi
+    printf '%s' "$value" | gh secret set "$name" --repo "$repo"
+done
+unset value
+gh secret list --repo "$repo"
+```
+
+- **About:** Beschreibung auf Englisch, ein Satz, was die Seite ist und für wen (z. B. `Website of the tennis club TC Vierkirchen – club news, teams, courts and membership, built with Next.js.`, höchstens 350 Zeichen). Website ist die kanonische Adresse aus `SITE_URL`. Topics klein und in kebab-case: immer `nextjs`, `react`, `typescript`, `website`, dazu zwei bis drei zu Art, Branche oder Ort (z. B. `sports-club`, `tennis`, `bavaria`).
+
+```bash
+gh repo edit DasRed/<name> \
+    --description "Website of … – …, built with Next.js." \
+    --homepage "https://www.<domain>" \
+    --add-topic nextjs,react,typescript,website,<thema>
+gh repo view DasRed/<name> --json description,homepageUrl,repositoryTopics
+```
 
 **Doku und Portfolio (nur wenn in den Fragen 26 und 28–30 gewählt):**
 - Projekt-Doku anzeigen: nach `website-marco-starker.de/docs-integration.md` umsetzen (übersetzte Pfade, `scripts/fetch-docs.ts` als `prebuild`, `DocsRepository`, Doku-Layout, semantic-release-Konfiguration im Schlüssel `"release"` der `package.json` mit `docs` → Patch, Concurrency in `ci.yml`), Projektdaten nach `project-schema.md`.
-- Doku im Repo: `docs/de` und `docs/en` nach `docs-contract.md` mit dem Seitensatz aus `docs-templates.md` anlegen; das README verlinkt auf die Doku-Seite; `docs.yml` nach `docs-release.md`. Token und Secret setzt Marco.
+- Doku im Repo: `docs/de` und `docs/en` nach `docs-contract.md` mit dem Seitensatz aus `docs-templates.md` anlegen; das README verlinkt auf die Doku-Seite; `docs.yml` nach `docs-release.md`. Das Secret `WEBSITE_RELEASE_TOKEN` kommt mit den anderen Secrets (Frage 32).
 - Öffentliches Repo: `public-repo-checklist.md` vor dem Umschalten abarbeiten und das Ergebnis im Bericht nennen. Umschalten macht Marco.
 - marco-starker.de: Eintrag (Daten, Übersetzungen, ggf. Fallstudie) als Vorschlag im Bericht liefern, nicht ins Repo marco-starker.de schreiben.
 
@@ -215,4 +250,4 @@ src/
 - JSON-LD im Rich-Results-Test von Google und auf validator.schema.org prüfen.
 - Lokale Seiten: Google-Unternehmensprofil mit identischen Angaben anlegen oder aktualisieren (Kunde oder Marco). Optional Bing Webmaster Tools (Import aus der Search Console).
 
-**Vor dem Abschluss:** `npm test` und `npm run build` müssen grün sein. Ehrlich berichten, was offen ist (fehlende Rechtsdaten, Platzhaltertexte, Bilder, Design-Werte, Infrastruktur-Schritte für Marco). Kein Commit/Push ohne ausdrückliches OK.
+**Vor dem Abschluss:** `npm test` und `npm run build` müssen grün sein. Bei Frage 32 mit Ja und vorhandenem Repo: `gh secret list` zeigt die vier Secrets, `gh repo view` Beschreibung, Website und Topics. Ehrlich berichten, was offen ist (fehlende Rechtsdaten, Platzhaltertexte, Bilder, Design-Werte, Infrastruktur-Schritte für Marco). Kein Commit/Push ohne ausdrückliches OK.

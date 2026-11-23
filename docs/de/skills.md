@@ -10,9 +10,9 @@ Im Ordner [`skills/`](https://github.com/DasRed/ai-instructions/tree/main/skills
 ist eine `SKILL.md` mit Name, Beschreibung und Anweisungen. Claude lädt ihn, wenn eine Anfrage zur Beschreibung passt,
 und arbeitet den Ablauf dann Schritt für Schritt ab.
 
-## neue-webseite
+## new-website
 
-[`skills/neue-webseite/SKILL.md`](https://github.com/DasRed/ai-instructions/blob/main/skills/neue-webseite/SKILL.md)
+[`skills/new-website/SKILL.md`](https://github.com/DasRed/ai-instructions/blob/main/skills/new-website/SKILL.md)
 führt durch den Bau einer neuen Webseite, von der ersten Frage bis zum fertigen Repo:
 
 1. **Kontext sammeln:** Guidelines, Styleguides, Webseiten-Bausteine und ein Referenz-Repo lesen, Domains, freie Ports
@@ -60,7 +60,9 @@ kommen danach und nur mit ausdrücklichem OK.
 
 ### Grenzen
 
-Infrastruktur wie DNS, Proxy und Server richtet der Skill nicht selbst ein, er liefert nur Vorschläge. Commits und
+Infrastruktur wie DNS, Proxy und Server richtet der Skill nicht selbst ein, er liefert nur Vorschläge. Sobald das Repo
+auf GitHub existiert, setzt er auf Wunsch per `gh` die Secrets für Deploy, Home Assistant und Doku-Release aus
+`secrets/.env` (ohne die Werte anzuzeigen) und das About mit Beschreibung, Adresse der Seite und Topics. Commits und
 Pushes gibt es nur mit ausdrücklichem OK.
 
 > [!NOTE]
@@ -119,7 +121,7 @@ du sie, aktualisierst du danach die Kopie in Claude.
 
 ## Aufrufen
 
-Ein Skill startet, wenn deine Anfrage zu seiner Beschreibung passt. `neue-webseite`, wenn du eine neue Webseite bauen willst:
+Ein Skill startet, wenn deine Anfrage zu seiner Beschreibung passt. `new-website`, wenn du eine neue Webseite bauen willst:
 
 ```text
 Ich möchte eine neue Webseite für den Tennisverein bauen.

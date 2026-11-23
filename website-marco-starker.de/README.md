@@ -1,7 +1,7 @@
 # Webseiten-Bausteine
 
 Regeln und Vorlagen für Webseiten, die Projekte zeigen und deren Doku aus den Projekt-Repos einbinden
-(Vorbild: marco-starker.de). Der Skill `neue-webseite` (`../skills/neue-webseite/SKILL.md`) fragt ab, ob eine neue
+(Vorbild: marco-starker.de). Der Skill `new-website` (`../skills/new-website/SKILL.md`) fragt ab, ob eine neue
 Seite oder ein neues Repo diese Bausteine braucht, und liest dann die passenden Dateien.
 Der Skill `new-mcp` (`../skills/new-mcp/SKILL.md`) nutzt bei jedem neuen MCP-Server alle Dateien mit „Repo“ oder
 „beide“ und `project-schema.md` für den Eintrag auf marco-starker.de.
@@ -15,7 +15,7 @@ Der Skill `new-mcp` (`../skills/new-mcp/SKILL.md`) nutzt bei jedem neuen MCP-Ser
 | `docs-integration.md`      | Doku laden, Pfade, Darstellung, SEO, Konfiguration, Tests           | Webseite   |
 | `docs-release.md`          | Doku-Änderung → leerer `docs`-Commit → Release der Webseite         | beide      |
 
-## Verwendung im Skill `neue-webseite`
+## Verwendung im Skill `new-website`
 
 | Frage im Skill                                         | Antwort | Dateien lesen                                                                 |
 |--------------------------------------------------------|---------|-------------------------------------------------------------------------------|
