@@ -10,7 +10,7 @@ Entscheidung (20.11.2026): Release statt Abruf zur Laufzeit, damit alles vorgeba
 
 ```
 Push auf main mit Änderung in docs/** (Projekt-Repo)
-    → Workflow docs.yml
+    → Workflow docs.yml (ruft docs.yml aus github-workflows auf)
         → Action docs-check: Vertrag prüfen (bricht bei Fehlern ab)
         → Action website-release: leerer Commit „docs(<slug>): sync documentation“ auf main der Webseite
             → CI der Webseite (node-docker.yml): semantic-release → Patch-Version
@@ -21,41 +21,26 @@ Push auf main mit Änderung in docs/** (Projekt-Repo)
 
 - Nachricht: `docs(<slug>): sync documentation`, z. B. `docs(hetzner-mcp): sync documentation`.
 - Kein `fix:` – der Changelog soll zeigen, welche Doku sich geändert hat, nicht einen erfundenen Fehler.
-- semantic-release muss `docs` als Patch werten und im Changelog zeigen. Die Konfiguration steht im Schlüssel
-  `"release"` der `package.json` (keine eigene `.releaserc.json`, damit es nur eine Quelle gibt). Stand auf
-  marco-starker.de:
+- semantic-release muss `docs` als Patch werten und in den Release Notes zeigen. Das macht das in `node-docker.yml`
+  eingebaute semantic-release mit dem Input `release-docs: true` in der `ci.yml` der Webseite; die Release Notes haben
+  immer einen Abschnitt „Documentation“. Im Repo der Webseite steht dafür nichts in der `package.json`:
 
-```json
-"release": {
-    "branches": ["main"],
-    "plugins": [
-        ["@semantic-release/commit-analyzer", {
-            "preset":       "conventionalcommits",
-            "releaseRules": [{"type": "docs", "release": "patch"}]
-        }],
-        ["@semantic-release/release-notes-generator", {
-            "preset":       "conventionalcommits",
-            "presetConfig": {"types": [
-                {"type": "feat", "section": "Features"},
-                {"type": "fix", "section": "Bug Fixes"},
-                {"type": "perf", "section": "Performance"},
-                {"type": "docs", "section": "Documentation"}
-            ]}
-        }],
-        ["@semantic-release/npm", {"npmPublish": false}],
-        ["@semantic-release/git", {
-            "assets":  ["package.json", "package-lock.json"],
-            "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-        }],
-        ["@semantic-release/github", {"failComment": false}]
-    ]
-}
+```yaml
+jobs:
+  pipeline:
+    uses: DasRed/github-workflows/.github/workflows/node-docker.yml@v2
+    secrets:
+      dockhand-host:             ${{ secrets.DOCKHAND_HOST }}
+      dockhand-token:            ${{ secrets.DOCKHAND_TOKEN }}
+      homeassistant-webhook-url: ${{ secrets.HOMEASSISTANT_WEBHOOK_URL }}
+    with:
+      environment:  chronos
+      release-docs: true
+      changelog:    false
 ```
 
 Damit lösen auch reine `docs:`-Commits im Repo der Webseite selbst ein Release aus – gewollt, denn die Seite ist ihr
-Inhalt. `conventional-changelog-conventionalcommits` als devDependency nicht vergessen. Liegt in einem Projekt doch eine
-`.releaserc*`-Datei, gilt nur eine der beiden Quellen – dann die Konfiguration dort pflegen und den Schlüssel in der
-`package.json` entfernen.
+Inhalt. `changelog: false`, weil marco-starker.de kein `CHANGELOG.md` führt.
 
 ## 3. Action `docs-check` (Repo github-workflows)
 
@@ -100,7 +85,8 @@ startet keine weiteren Workflows, die CI der Webseite liefe dann nicht los.
 
 ## 5. Workflow im Projekt-Repo
 
-`.github/workflows/docs.yml` – unabhängig von Sprache und Build-System (auch für Java/Gradle-Mods):
+`.github/workflows/docs.yml` – unabhängig von Sprache und Build-System (auch für Java/Gradle-Mods). Prüfung und
+Release stecken im wiederverwendbaren Workflow `docs.yml` des Repos github-workflows; im Projekt bleibt nur der Aufruf:
 
 ```yaml
 name: Docs
@@ -110,23 +96,23 @@ on:
     branches: [ main ]
     paths:    [ 'docs/**' ]
 
+  pull_request:
+    paths:    [ 'docs/**' ]
+
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  release-website:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: DasRed/github-workflows/.github/actions/docs-check@v1
-
-      - uses: DasRed/github-workflows/.github/actions/website-release@v1
-        with:
-          token: ${{ secrets.WEBSITE_RELEASE_TOKEN }}
-          slug:  <slug>
+  docs:
+    uses: DasRed/github-workflows/.github/workflows/docs.yml@v2
+    secrets:
+      website-release-token: ${{ secrets.WEBSITE_RELEASE_TOKEN }}
 ```
 
-Zusätzlich lohnt `docs-check` auch in Pull Requests, damit Fehler vor dem Merge auffallen.
+In Pull Requests läuft nur `docs-check`, das Release folgt mit dem Merge. Der Slug ist standardmäßig der Name des
+Repos; weicht er ab, kommt `with: slug: <slug>` dazu.
 
 ## 6. Webseite
 

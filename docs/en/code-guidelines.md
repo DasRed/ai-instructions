@@ -35,7 +35,8 @@ Code, comments and project documentation are in English; the guidelines themselv
   on.
 - **Platform before library:** `fetch`, `structuredClone`, `crypto.randomUUID()`; as few dependencies as possible.
 - **Configuration from environment variables only**, every variable documented in `.env.example`.
-- **Releases only via semantic-release** with Conventional Commits.
+- **Releases only via semantic-release** with Conventional Commits. Projects bring nothing for it, semantic-release runs
+  in the `node-npm.yml` and `node-docker.yml` workflows.
 
 A typical example from the file:
 

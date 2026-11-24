@@ -34,7 +34,8 @@ kurzen Beispiel. Code, Kommentare und Projekt-Doku sind auf Englisch.
   Options-Objekt.
 - **Plattform vor Library:** `fetch`, `structuredClone`, `crypto.randomUUID()`; so wenige Abhängigkeiten wie möglich.
 - **Konfiguration nur aus Umgebungsvariablen**, jede Variable dokumentiert in `.env.example`.
-- **Releases nur per semantic-release** mit Conventional Commits.
+- **Releases nur per semantic-release** mit Conventional Commits. Projekte bringen dafür nichts mit, semantic-release
+  läuft in den Workflows `node-npm.yml` und `node-docker.yml`.
 
 Ein typisches Beispiel aus der Datei:
 

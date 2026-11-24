@@ -26,16 +26,16 @@ four servers hetzner-mcp, nginx-proxy-manager-mcp, discord-mcp and backrest-mcp.
 
 ## Standard of an MCP server
 
-| Topic          | Standard                                                                                        |
-|----------------|-------------------------------------------------------------------------------------------------|
-| Transport      | Streamable HTTP, stateless: one MCP instance per `POST`, `GET` and `DELETE` return `405`        |
-| Permissions    | read-only by default, allow and deny lists with `*`, tool hints `readOnlyHint` and `destructiveHint` |
-| Access         | optional bearer token compared in constant time, secrets from the API masked                    |
-| Configuration  | environment variables only, prefixed `<SERVICE>_MCP_`, all documented in `.env.example`          |
-| Container      | `node:26-alpine`, no root, no state, health check on `/healthz`                                  |
-| Release        | semantic-release sets the version in `package.json` and `server.json`, image to GHCR            |
-| Registry       | entry `io.github.DasRed/<slug>` after every release via GitHub OIDC, no secret                  |
-| Docs           | `docs/de` and `docs/en` with overview, installation, configuration, Claude, other clients, tools, security |
+| Topic         | Standard                                                                                                                                             |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Transport     | Streamable HTTP, stateless: one MCP instance per `POST`, `GET` and `DELETE` return `405`                                                             |
+| Permissions   | read-only by default, allow and deny lists with `*`, tool hints `readOnlyHint` and `destructiveHint`                                                 |
+| Access        | optional bearer token compared in constant time, secrets from the API masked                                                                         |
+| Configuration | environment variables only, prefixed `<SERVICE>_MCP_`, all documented in `.env.example`                                                              |
+| Container     | `node:26-alpine`, no root, no state, health check on `/healthz`                                                                                      |
+| Release       | semantic-release in the workflow sets the version in `package.json` and `server.json`, image to GHCR; nothing of it in the project                   |
+| Registry      | entry `io.github.DasRed/<slug>` after every release via GitHub OIDC, no secret, in the same workflow as release and deploy, one notification for all |
+| Docs          | `docs/de` and `docs/en` with overview, installation, configuration, Claude, other clients, tools, security                                           |
 
 ## Limits
 

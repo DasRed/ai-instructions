@@ -18,8 +18,10 @@ Was am Ende steht (so wie bei hetzner-mcp, nginx-proxy-manager-mcp, discord-mcp 
 
 ```
 Repo DasRed/<slug> (public, MIT)
-    → Push auf main → node-docker.yml: semantic-release → Image ghcr.io/dasred/<slug> → Dockhand-Deploy auf chronos
-        → mcp-publish.yml: Eintrag io.github.DasRed/<slug> in der offiziellen MCP Registry
+    → Push auf main → mcp-publish.yml: semantic-release (im Workflow eingebaut, setzt auch server.json)
+        → Image ghcr.io/dasred/<slug> → Dockhand-Deploy auf chronos
+        → Eintrag io.github.DasRed/<slug> in der offiziellen MCP Registry
+        → eine Meldung an Home Assistant für den ganzen Lauf
     → Push mit docs/** → docs.yml: docs-check → Release von marco-starker.de mit der Doku
 Container mcp-<name> im Stack chronos/mcp → NPM-Host <name>.mcp.marco-starker.de → Custom Connector in Claude
 ```
@@ -42,7 +44,8 @@ Bevor du fragst, schau nach, was schon bekannt ist, damit du nichts doppelt abfr
     - `nginx-proxy-manager-mcp`: Login mit E-Mail/Passwort, Token-Cache mit Neuanmeldung bei `401`, Teil-Updates
     - `discord-mcp`: Login per Benutzerkonto mit Playwright, Zustand im Volume, Status „Experiment“
 - **Workflows:** im Repo `DasRed/github-workflows` (lokal `~/Web/private/github-workflows`) die Doku zu
-  `node-docker.yml`, `mcp-publish.yml`, `docs-check` und `website-release` (Inputs, Secrets, Outputs).
+  `mcp-publish.yml` (ruft `node-docker.yml` auf), `node-docker.yml`, der Action `semantic-release`, `docs-check` und
+  `website-release` (Inputs, Secrets, Outputs).
 - **Ziel-API:** offizielle API-Doku bzw. OpenAPI/Proto des Dienstes lesen, Version und Stabilität notieren, prüfen,
   welche Funktionen es per API wirklich gibt (Lehre aus hetzner-mcp: die Cloud-API kennt keine Rechnungen). Prüfen,
   ob die API Geheimnisse im Klartext zurückgibt (Lehre aus backrest-mcp: Repo-Passwörter in der Konfiguration).
@@ -148,7 +151,7 @@ docs/de, docs/en              Doku nach Vertrag
 package.json  package-lock.json  tsconfig.json  vitest.config.ts
 ```
 
-`CHANGELOG.md` legt semantic-release an, nicht von Hand.
+`CHANGELOG.md` legt das semantic-release im Workflow an, nicht von Hand.
 
 ### Server
 
@@ -179,13 +182,16 @@ package.json  package-lock.json  tsconfig.json  vitest.config.ts
 
 ### package.json
 
-Wie backrest-mcp: `@dasred/<slug>`, `"type": "module"`, `"private": true`, `license` MIT, `homepage` auf die Doku
+`@dasred/<slug>`, `"type": "module"`, `"private": true`, `license` MIT, `homepage` auf die Doku
 (`https://www.marco-starker.de/en/projects/<slug>/docs`), `engines` aus den CodeGuidlines, Script-Namen aus den
 CodeGuidlines (`build` = `tsc && tsc-alias`, `test` = `vitest run`, `dev`, `start`, …). Abhängigkeiten so wenige wie
-möglich: `@modelcontextprotocol/sdk`, `fastify`, `zod`, `dotenv`. Release-Konfiguration im Schlüssel `"release"`:
-commit-analyzer, release-notes-generator, changelog, npm (`npmPublish: false`), **exec** (setzt die Version in
-`server.json` und den Tag des OCI-Pakets), git (Assets `package.json`, `package-lock.json`, `server.json`,
-`CHANGELOG.md`), github (`failComment: false`) – den `prepareCmd` 1:1 aus backrest-mcp übernehmen.
+möglich: `@modelcontextprotocol/sdk`, `fastify`, `zod`, `dotenv`.
+
+**Kein semantic-release im Projekt:** keine Abhängigkeiten `semantic-release`, `@semantic-release/*` oder
+`conventional-changelog-conventionalcommits`, kein Schlüssel `"release"`, keine Scripts `semantic-release`,
+`publish:check` oder `prepublishOnly`. Das Release macht die Action `semantic-release` in `node-docker.yml`; sie setzt
+die Version in `package.json`, `package-lock.json` und `server.json` (samt Tag des OCI-Pakets) und pflegt
+`CHANGELOG.md`. Ältere MCPs (z. B. backrest-mcp) haben das teils noch im Projekt, das nicht übernehmen.
 
 ### Docker
 
@@ -237,13 +243,43 @@ Aus backrest-mcp übernehmen und anpassen:
 
 ### CI
 
-`.github/workflows/ci.yml` wie in backrest-mcp: Push auf `main` und `workflow_dispatch`, Job `pipeline` mit
-`DasRed/github-workflows/.github/workflows/node-docker.yml@v1` (`environment: chronos`, `container-name: mcp-<dienst>`,
-Secrets `dockhand-host`, `dockhand-token`, `homeassistant-webhook-url`), Job `mcp-registry` mit `mcp-publish.yml@v1`,
-nur wenn `needs.pipeline.outputs.released == 'true'`, mit `version: ${{ needs.pipeline.outputs.version }}` und
-`id-token: write`. Ohne eigene Instanz `deploy: false` setzen. Ohne Registry den zweiten Job weglassen.
+`.github/workflows/ci.yml`: Push auf `main` und `workflow_dispatch`, ein einziger Job `pipeline` mit
+`mcp-publish.yml@v2`. Der Workflow macht Test, Release, Image, Deployment und Registry-Eintrag und meldet erst am Ende
+an Home Assistant, ein fehlgeschlagener Registry-Eintrag kommt also als Fehler an.
 
-`.github/workflows/docs.yml` 1:1 aus backrest-mcp, nur `slug` anpassen.
+```yaml
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+permissions:
+  contents:      write
+  packages:      write
+  issues:        write
+  pull-requests: write
+  id-token:      write
+
+jobs:
+  pipeline:
+    uses: DasRed/github-workflows/.github/workflows/mcp-publish.yml@v2
+    secrets:
+      dockhand-host:             ${{ secrets.DOCKHAND_HOST }}
+      dockhand-token:            ${{ secrets.DOCKHAND_TOKEN }}
+      homeassistant-webhook-url: ${{ secrets.HOMEASSISTANT_WEBHOOK_URL }}
+    with:
+      environment:    chronos
+      container-name: mcp-<dienst>
+```
+
+Ohne eigene Instanz `deploy: false` setzen. Ohne Registry (Frage 13 „nein“) statt `mcp-publish.yml` direkt
+`node-docker.yml@v2` mit denselben Angaben aufrufen, dann ohne `id-token: write`.
+
+`.github/workflows/docs.yml` nach `website-marco-starker.de/docs-release.md`, Abschnitt 5: nur der Aufruf von
+`docs.yml@v2` aus `DasRed/github-workflows`. Der Slug ist der Repo-Name, ein `slug` ist daher nicht nötig.
 
 Nicht darauf hinweisen, dass die Actions im Workflow-Repo noch fehlen könnten.
 
@@ -252,8 +288,8 @@ Nicht darauf hinweisen, dass die Actions im Workflow-Repo noch fehlen könnten.
 Erst, wenn das Repo `DasRed/<slug>` auf GitHub existiert und `gh` als DasRed angemeldet ist. Ohne `gh` die Befehle
 unten mit eingesetztem Slug an Marco geben.
 
-**Secrets** – alle vier, auch ohne eigene Instanz (`node-docker.yml` verlangt die Dockhand- und Home-Assistant-Secrets
-immer). Die Werte kommen nur per Pipe aus `secrets/.env` zu `gh`; nie ausgeben, in Dateien schreiben, als Argument
+**Secrets** – alle vier, auch ohne eigene Instanz (`mcp-publish.yml` und `node-docker.yml` verlangen die Dockhand- und
+Home-Assistant-Secrets immer). Die Werte kommen nur per Pipe aus `secrets/.env` zu `gh`; nie ausgeben, in Dateien schreiben, als Argument
 übergeben oder in den Chat übernehmen:
 
 ```bash
@@ -296,7 +332,7 @@ Wie backrest-mcp: Titel, ein Absatz Was/Wofür (Anzahl Tools, „read-only by de
 die Doku (`Documentation: https://www.marco-starker.de/en/projects/<slug>/docs` und
 `(Deutsch: https://www.marco-starker.de/de/projekte/<slug>/doku)`), `## Quick start` mit `docker run`, Hinweis „never
 expose it to the internet without TLS and access control“, `## Local development` (`npm ci`, `.env`, `npm run dev`,
-`npm test`, `npm run build`, Release per semantic-release), ggf. Danksagung an das Vorbild, `## License` MIT.
+`npm test`, `npm run build`, Release per semantic-release in CI), ggf. Danksagung an das Vorbild, `## License` MIT.
 
 ### Doku (`docs/de`, `docs/en`)
 
@@ -367,6 +403,7 @@ Im lokalen Repo `~/Web/private/marco-starker.de` (oder als Vorschlag im Bericht)
   `GITHUB_WORKSPACE=$PWD node ~/Web/private/github-workflows/.github/actions/docs-check/docs-check.mjs`
 - `server.json`: gültiges JSON, `version` = `package.json`, OCI-Tag = Version, Label im Dockerfile = `name`,
   `description` ≤ 100 Zeichen.
+- `package.json` enthält nichts von semantic-release (Abhängigkeiten, `release`, Release-Scripts).
 - Falls Frage 15 mit Ja beantwortet und das Repo schon da ist: `gh secret list` zeigt die vier Secrets, `gh repo view`
   zeigt Beschreibung, Website und Topics.
 - `public-repo-checklist.md` durchgehen (u. a. `gitleaks detect`, keine echten Zugangsdaten in Tests und Beispielen)
@@ -383,8 +420,9 @@ Schritte für Marco (in dieser Reihenfolge):
 1. Repo `DasRed/<slug>` auf GitHub anlegen (public erst nach der Checkliste). Danach setzt Claude Secrets, About und
    `repository.id` in `server.json` (Frage 15), sonst macht Marco das mit den Befehlen aus dem Bericht.
 2. Erster Push auf `main` mit `feat:` → Release, Image auf GHCR.
-3. GHCR-Paket `<slug>` auf public stellen (Registry und andere Nutzer müssen das Image ziehen können). Ist der Job
-   `mcp-registry` vorher gescheitert, ihn danach neu starten.
+3. GHCR-Paket `<slug>` auf public stellen (Registry und andere Nutzer müssen das Image ziehen können). Beim ersten
+   Lauf scheitert der Job `mcp-registry` deshalb meist und Home Assistant meldet einen Fehler; nach dem Umstellen den
+   Lauf mit „Re-run failed jobs“ neu starten.
 4. Compose-Service in `docker-environment` übernehmen, Stack in Dockhand aktualisieren.
 5. NPM-Proxy-Host anlegen, Connector in Claude hinzufügen, mit den Beispielfragen aus Runde 1 testen.
 6. marco-starker.de committen.

@@ -186,11 +186,11 @@ src/
 - **Inhalte:** sprechende Linktexte (kein „hier klicken“), Alt-Texte für alle inhaltlichen Bilder, interne Links zwischen verwandten Seiten, bei lokalen Seiten Name, Adresse und Telefon überall identisch (Footer, Impressum, JSON-LD, Google-Unternehmensprofil).
 - **Tests** (falls gewünscht): `buildMetadata` (Canonical, hreflang inkl. `x-default`, `noindex`), `sitemap` (alle Seiten in beiden Sprachen, keine Rechtsseiten), `robots` je `SITE_INDEXABLE` (ohne `host`), `x-default` einer Unterseite zeigt auf dieselbe Seite, `JsonLd` maskiert `<`.
 
-**Tooling:** `npm test` = `tsc --noEmit` + `oxlint` (+ `vitest run`, falls Tests gewünscht). Kein ESLint, kein tsup, kein ctix, kein CircleCI. `package.json` mit `@dasred/<name>`, `engines` Node ≥ 26, semantic-release (main, Backmerge nach develop).
+**Tooling:** `npm test` = `tsc --noEmit` + `oxlint` (+ `vitest run`, falls Tests gewünscht). Kein ESLint, kein tsup, kein ctix, kein CircleCI. `package.json` mit `@dasred/<name>`, `engines` Node ≥ 26. Kein semantic-release im Projekt: keine Abhängigkeiten `semantic-release`, `@semantic-release/*` oder `conventional-changelog-conventionalcommits`, kein Schlüssel `"release"`, keine Scripts `semantic-release`, `publish:check` oder `prepublishOnly`; das Release macht das in `node-docker.yml` eingebaute semantic-release (Backmerge nach `develop` automatisch, wenn der Branch existiert).
 
 **Docker:** Einstufiges `node:26-alpine`-Image, kopiert `.next/standalone`, `.next/static`, `public` und zuletzt `package.json`; `USER node`; `EXPOSE <port>`; HEALTHCHECK per `wget` auf `/api/health`.
 
-**CI:** `.github/workflows/ci.yml` nutzt `DasRed/github-workflows/.github/workflows/node-docker.yml@v1` mit `environment: chronos` und `container-name: <name>` sowie den Secrets `dockhand-host`, `dockhand-token` und `homeassistant-webhook-url` (aus `DOCKHAND_HOST`, `DOCKHAND_TOKEN`, `HOMEASSISTANT_WEBHOOK_URL`, wie in annuva-website). Branches: Arbeit auf `develop`, Release auf `main`, Conventional Commits.
+**CI:** `.github/workflows/ci.yml` nutzt `DasRed/github-workflows/.github/workflows/node-docker.yml@v2` mit `environment: chronos` und `container-name: <name>` sowie den Secrets `dockhand-host`, `dockhand-token` und `homeassistant-webhook-url` (aus `DOCKHAND_HOST`, `DOCKHAND_TOKEN`, `HOMEASSISTANT_WEBHOOK_URL`). Besonderheiten des Releases über Inputs statt Konfiguration: `changelog: false`, wenn die Seite kein `CHANGELOG.md` führen soll; `release-docs: true`, wenn `docs:`-Commits ein Release auslösen sollen (siehe „Doku und Portfolio“). Branches: Arbeit auf `develop`, Release auf `main`, Conventional Commits.
 
 **GitHub-Repo: Secrets und About (nur wenn in Frage 32 gewählt):**
 - Erst, wenn das Repo `DasRed/<name>` auf GitHub existiert und `gh` als DasRed angemeldet ist. Ohne `gh` die Befehle mit eingesetztem Namen an Marco geben.
@@ -221,7 +221,7 @@ gh repo view DasRed/<name> --json description,homepageUrl,repositoryTopics
 ```
 
 **Doku und Portfolio (nur wenn in den Fragen 26 und 28–30 gewählt):**
-- Projekt-Doku anzeigen: nach `website-marco-starker.de/docs-integration.md` umsetzen (übersetzte Pfade, `scripts/fetch-docs.ts` als `prebuild`, `DocsRepository`, Doku-Layout, semantic-release-Konfiguration im Schlüssel `"release"` der `package.json` mit `docs` → Patch, Concurrency in `ci.yml`), Projektdaten nach `project-schema.md`.
+- Projekt-Doku anzeigen: nach `website-marco-starker.de/docs-integration.md` umsetzen (übersetzte Pfade, `scripts/fetch-docs.ts` als `prebuild`, `DocsRepository`, Doku-Layout, `release-docs: true` in der `ci.yml`, damit `docs:`-Commits ein Patch-Release auslösen, Concurrency in `ci.yml`), Projektdaten nach `project-schema.md`.
 - Doku im Repo: `docs/de` und `docs/en` nach `docs-contract.md` mit dem Seitensatz aus `docs-templates.md` anlegen; das README verlinkt auf die Doku-Seite; `docs.yml` nach `docs-release.md`. Das Secret `WEBSITE_RELEASE_TOKEN` kommt mit den anderen Secrets (Frage 32).
 - Öffentliches Repo: `public-repo-checklist.md` vor dem Umschalten abarbeiten und das Ergebnis im Bericht nennen. Umschalten macht Marco.
 - marco-starker.de: Eintrag (Daten, Übersetzungen, ggf. Fallstudie) als Vorschlag im Bericht liefern, nicht ins Repo marco-starker.de schreiben.

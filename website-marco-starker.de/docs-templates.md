@@ -29,7 +29,7 @@ damit sich alle Projekte gleich anfühlen. Seiten, die für ein Projekt nichts h
 
 | Datei                 | order | Titel DE / EN                  | Inhalt                                             |
 |-----------------------|-------|--------------------------------|----------------------------------------------------|
-| `index.md`            | 0     | Überblick / Overview            | Inhalt des Repos, Versionierung (`@v1`)            |
+| `index.md`            | 0     | Überblick / Overview            | Inhalt des Repos, Versionierung (`@v2`)            |
 | `<workflow-name>.md`  | 10+   | Name des Workflows              | Ablauf, Inputs, Secrets, Beispiel-Aufruf            |
 | `<action-name>.md`    | 50+   | Name der Action                 | Inputs, Outputs, Beispiel                          |
 

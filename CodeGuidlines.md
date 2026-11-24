@@ -150,7 +150,7 @@ export default class DateFormatter {
 
 ### Basis-Konfiguration
 - `package.json`: `"type": "module"`, `engines` auf die aktuelle Node- und npm-Version (derzeit `node >=26.12.1`, `npm >=11.20.0`)
-- Pakete liegen in GitHub Packages unter `@dasred/*` (`publishConfig.registry`, `access: restricted`)
+- npm-Pakete heißen `@dasred/*` und werden per Workflow `node-npm.yml` aus `DasRed/github-workflows` auf npmjs.com (public, Trusted Publishing) und in GitHub Packages veröffentlicht; kein `publishConfig` im Paket
 - `tsconfig.json`: `target` ES2024, `module` ESNext, `moduleResolution` Bundler, `strict`, `outDir` dist, `skipLibCheck`, `lib` dom/dom.iterable/esnext; `include` nur `src/**/*.ts`, `test`, `dist`, `coverage` und `vitest.config.ts` ausgeschlossen; Path-Alias `@/*` → `./src/*`
 - SDK: `exports` mit `import`/`require`, `files: ["dist/*"]`
 - Tests mit `vitest`, Testdateien unter `./test/` mit derselben Struktur wie `src/`, `environment` `node` (Browser-SDKs `jsdom`), `watch: false`, Coverage über `@vitest/coverage-v8`
@@ -163,9 +163,6 @@ Die Script-Namen sind in allen Projekten gleich:
 | `build`            | Build ausführen                                               |
 | `test`             | `vitest run`                                                  |
 | `coverage`         | `vitest run --coverage`, JUnit nach `coverage/reports/unittest.xml` |
-| `publish:check`    | semantic-release Dry-Run                                      |
-| `prepublishOnly`   | `npm run semantic-release`                                    |
-| `semantic-release` | Release                                                       |
 | `start`            | Service: `node ./dist/index.js` (ggf. vorher Migrationen)     |
 | `dev`              | Service: `tsx watch ./src/index.ts`                           |
 | `preview`          | Service: `node --watch-path=./dist ./dist/index.js`           |
@@ -178,7 +175,9 @@ Die Script-Namen sind in allen Projekten gleich:
 
 ### Release
 - Commits nach Conventional Commits (`feat:`, `fix:`, `chore:`)
-- Releases ausschließlich über semantic-release (Changelog, npm-Publish, GitHub-Release, Backmerge `main` → `develop`)
+- Releases ausschließlich über semantic-release (Changelog, GitHub-Release, Backmerge `main` → `develop`)
+- semantic-release läuft in den Workflows aus `DasRed/github-workflows` (Action `semantic-release`): npm-Pakete per `node-npm.yml` (danach Publish auf npmjs.com und in GitHub Packages), Services per `node-docker.yml` (danach Docker-Image); im Projekt keine semantic-release-Abhängigkeiten, kein Schlüssel `release`, keine Release-Scripts
+- Besonderheiten über Inputs statt Konfiguration: `release-docs: true` (Webseiten, die Doku anzeigen), `changelog: false`; eine `server.json` (MCP-Server) wird automatisch mitversioniert
 - Branches: `develop` → `staging` → `main`, Feature-Branches als `feat/…`
 
 ## Services (Fastify)
