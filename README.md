@@ -30,6 +30,7 @@ Follow ./CodeGuidlines.md. Formatting follows ./intellij-code-styles.xml.
 | `styleguides/`              | Design styleguides for websites                              |
 | `website-marco-starker.de/` | Docs contract, project data and release flow                 |
 | `skills/`                   | Claude skills                                                |
+| `tools/`                    | Helper scripts, e.g. setting missing GitHub secrets in repos |
 
 ## License
 
